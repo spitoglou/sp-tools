@@ -1,11 +1,11 @@
 <?php
-
 /**
  * index.php.
  * @author Stavros Pitoglou <s.pitoglou@csl.gr>
  */
 
 // initialization
+//use League\Csv\Reader;
 require_once "vendor/autoload.php";
 require_once "lib/php-console-master/src/PhpConsole/__autoload.php";
 
@@ -62,3 +62,4 @@ $app->db = $db;
 $pers = new Person($app, 1);
 echo '<pre>';
 var_dump($pers);
+//$a = new Reader();
