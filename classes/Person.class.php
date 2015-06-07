@@ -7,6 +7,9 @@ class Person
 {
     public $fname     = '';
     public $lname     = '';
+    public $mother    = '';
+    public $father    = '';
+    public $dob       = '';
     public $physFiles = array();
     private $di;
 
