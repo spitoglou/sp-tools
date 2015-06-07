@@ -1,0 +1,5 @@
+{
+    "require": {
+        "jv2222/ezsql": "dev-master"
+    }
+}
