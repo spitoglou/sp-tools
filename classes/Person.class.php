@@ -12,6 +12,7 @@ class Person
     public $dob       = '';
     public $physFiles = array();
     private $di;
+    private $saveMode = 'insert';
 
     public function __construct($di, $id = '')
     {
@@ -19,7 +20,7 @@ class Person
         if ($id)
         {
             $this->loadPersonAttrs($id);
-
+            $this->saveMode = 'update';
         }
     }
 
@@ -33,5 +34,22 @@ class Person
         $this->di->logger->debug($result, 'Result');
         $this->fname = $result[0]['fname'];
         $this->lname = $result[0]['lname'];
+    }
+
+    public function save()
+    {
+        switch ($this->saveMode)
+        {
+            case 'insert':
+                # code...
+                break;
+            case 'update':
+                # code...
+                break;
+
+            default:
+                # code...
+                break;
+        }
     }
 }
