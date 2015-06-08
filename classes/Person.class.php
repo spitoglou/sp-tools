@@ -26,6 +26,9 @@ class Person extends Base
 			$this->loadPersonAttrs($id);
 			$this->saveMode = 'update';
 		}
+        $this->data['PERS_IS_MEMBER']=1;
+        $this->data['USER_CREATE']=1;
+
 	}
 
 	/**

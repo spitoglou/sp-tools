@@ -7,14 +7,6 @@ Abstract class Base
 {
 	protected $di;
 	protected $saveMode = 'insert';
-	/**
-	 * @param $DateEntry
-	 * @return mixed
-	 */
-	/**
-	 * @param $sql
-	 * @return mixed
-	 */
 	protected $schema;
 
 	function __construct($di)
@@ -46,6 +38,11 @@ Abstract class Base
 		return $result;
 	}
 
+	/**
+	 * [executeStatement description]
+	 * @param  [type] $sql [description]
+	 * @return [type]      [description]
+	 */
 	function executeStatement($sql)
 	{
 		try {
@@ -62,8 +59,9 @@ Abstract class Base
 	}
 
 	/**
-	 * @param $DateEntry
-	 * @return mixed
+	 * [formatDateForSQL description]
+	 * @param  [type] $DateEntry [description]
+	 * @return [type]            [description]
 	 */
 	function formatDateForSQL($DateEntry)
 	{

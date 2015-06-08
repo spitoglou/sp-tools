@@ -61,10 +61,18 @@ switch ($config['dbtype'])
 
 $app->db = $db;
 
-$pers = new Person($app, 174);
 echo '<pre>';
-var_dump($pers);
-$evn=new Event($app,2371,'assignment');
-var_dump($evn);
-echo $evn->person->lname;
+
+
+// $pers = new Person($app, 174);
+// var_dump($pers);
+// $evn=new Event($app,2371,'assignment');
+// var_dump($evn);
+// echo $evn->person->lname;
+$his=new History($app,21);
+var_dump($his);
+
+
+
+
 //$a = new Reader();

@@ -23,6 +23,7 @@ class Event extends Base
 	{
 		parent::__construct($di);
 		$this->type = $type;
+		if ($id)
 		{
 			$this->pevn['PEVN_ID'] = $id;
 			$this->loadAttrs($id);
