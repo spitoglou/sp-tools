@@ -6,7 +6,6 @@
 
 // initialization
 //use League\Csv\Reader;
-error_reporting(0);
 require_once "vendor/autoload.php";
 require_once "lib/php-console-master/src/PhpConsole/__autoload.php";
 
@@ -35,7 +34,7 @@ $config['my_dbpass'] = '';
 $config['dbhost']    = 'localhost';
 $config['database']  = 'socservice';
 $config['service']   = '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.84)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))';
-$config['schema']   = 'FE_PROD';
+$config['schema']    = 'FE_PROD';
 $config['or_dbuser'] = 'CS';
 $config['or_dbpass'] = 'CS';
 
@@ -63,16 +62,12 @@ $app->db = $db;
 
 echo '<pre>';
 
-
 // $pers = new Person($app, 174);
 // var_dump($pers);
 // $evn=new Event($app,2371,'assignment');
 // var_dump($evn);
 // echo $evn->person->lname;
-$his=new History($app,21);
+$his = new History($app, 21);
 var_dump($his);
-
-
-
 
 //$a = new Reader();
