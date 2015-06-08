@@ -6,6 +6,7 @@
 
 // initialization
 //use League\Csv\Reader;
+error_reporting(0);
 require_once "vendor/autoload.php";
 require_once "lib/php-console-master/src/PhpConsole/__autoload.php";
 
@@ -28,14 +29,15 @@ $app         = new Di();
 $app->logger = $handler;
 
 //config
-$config['dbtype']    = 'mysql';
+$config['dbtype']    = 'orcl';
 $config['my_dbuser'] = 'root';
 $config['my_dbpass'] = '';
 $config['dbhost']    = 'localhost';
 $config['database']  = 'socservice';
-$config['service']   = '';
-$config['or_dbuser'] = '';
-$config['or_dbpass'] = '';
+$config['service']   = '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.84)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))';
+$config['schema']   = 'FE_PROD';
+$config['or_dbuser'] = 'CS';
+$config['or_dbpass'] = 'CS';
 
 $app->conf = $config;
 
@@ -59,7 +61,10 @@ switch ($config['dbtype'])
 
 $app->db = $db;
 
-$pers = new Person($app, 1);
+$pers = new Person($app, 174);
 echo '<pre>';
 var_dump($pers);
+$evn=new Event($app,2371,'assignment');
+var_dump($evn);
+echo $evn->person->lname;
 //$a = new Reader();
