@@ -1,0 +1,2 @@
+phpdoc:
+sudo phpdoc run -d ./ -t ./docs --ignore "vendor/*,lib/*"
