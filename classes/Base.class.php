@@ -35,10 +35,10 @@ abstract class Base
         }
         catch (Exception $e)
         {
-            $this->di->logger->debug($this->di->db->last_error, 'Query Error');
+            $this->di->logger->debug($sql.' / '.$this->di->db->last_error, 'Query Error');
         }
 
-        $this->di->logger->debug($result, 'Result');
+        // $this->di->logger->debug($result, 'Result');
         return $result;
     }
 
@@ -50,7 +50,7 @@ abstract class Base
     public function executeStatement($sql)
     {
         try {
-            $result = $this->di->db->query($sql, ARRAY_A);
+            $result = $this->di->db->query($sql);
             if (!$result)
             {
                 throw new Exception($this->di->db->last_error, 1);
@@ -58,7 +58,7 @@ abstract class Base
         }
         catch (Exception $e)
         {
-            $this->di->logger->debug($this->di->db->last_error, 'Query Error');
+            $this->di->logger->debug($sql.' / '.$this->di->db->last_error, 'Query Error');
         }
     }
 

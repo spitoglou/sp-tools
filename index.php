@@ -6,7 +6,9 @@
 
 // initialization
 //use League\Csv\Reader;
+$_SESSION['DefaultDateFormat']='d/m/Y';
 require_once "vendor/autoload.php";
+require_once "lib/DateFunctions.inc";
 require_once "lib/php-console-master/src/PhpConsole/__autoload.php";
 
 $handler = PhpConsole\Handler::getInstance();
@@ -35,6 +37,7 @@ $config['dbhost']    = 'localhost';
 $config['database']  = 'socservice';
 $config['service']   = '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.84)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))';
 $config['schema']    = 'FE_PROD';
+$config['schema']    = 'FE_TEST';
 $config['or_dbuser'] = 'CS';
 $config['or_dbpass'] = 'CS';
 
@@ -67,7 +70,8 @@ echo '<pre>';
 // $evn=new Event($app,2371,'assignment');
 // var_dump($evn);
 // echo $evn->person->lname;
-$his = new History($app, 21);
-var_dump($his);
+// $his = new History($app, 21);
+// var_dump($his);
 
 //$a = new Reader();
+require "csvtest.php";

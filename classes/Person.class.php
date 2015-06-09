@@ -10,94 +10,113 @@
  */
 class Person extends Base
 {
-    public $idNr;
-    /**
-     * person record array
-     * @var array
-     */
-    public $data;
-    /**
-     * First Name
-     * @var string
-     */
-    public $fname  = '';
-    public $lname  = '';
-    public $mother = '';
-    public $father = '';
-    public $dob    = '';
-    public $gender;
-    /**
-     * Kethea 9-digit code
-     * @var string
-     */
-    public $ketheaCode;
-    public $code;
-    public $physFiles = array();
+	public $idNr;
+	/**
+	 * person record array
+	 * @var array
+	 */
+	public $data;
+	/**
+	 * First Name
+	 * @var string
+	 */
+	public $fname  = '';
+	public $lname  = '';
+	public $mother = '';
+	public $father = '';
+	public $dob    = '';
+	public $gender;
+	/**
+	 * Kethea 9-digit code
+	 * @var string
+	 */
+	public $ketheaCode;
+	public $code;
+	public $physFiles = array();
 
-    /**
-     * constructor
-     * @param DI $di Dependency Injector Object
-     * @param int $id person id
+	/**
+	 * constructor
+	 * @param DI $di Dependency Injector Object
+	 * @param int $id person id
+	 */
+	public function __construct($di, $id = '')
+	{
+		parent::__construct($di);
+		if ($id)
+		{
+			$this->idNr = $id;
+			$this->loadPersonAttrs($id);
+			$this->saveMode = 'update';
+		}
+		$this->data['PERS_IS_MEMBER'] = 1;
+		$this->data['USER_CREATE']    = 1;
+
+	}
+
+	/**
+	 * @param int $id person id
+	 */
+	private function loadPersonAttrs($id = '')
+	{
+		$sql          = "SELECT * from {$this->schema}.FE_PERSONS where PERS_ID={$id}";
+		$result       = $this->executeQuery($sql);
+		$this->data   = $result[0];
+		$this->fname  = $result[0]['PERS_FIRST_NAME'];
+		$this->lname  = $result[0]['PERS_LAST_NAME'];
+		$this->mother = $result[0]['PERS_MOTHER_NAME'];
+		$this->father = $result[0]['PERS_FATHER_NAME'];
+		$this->dob    = $result[0]['PERS_BIRTH_DATE'];
+		$this->gender = $result[0]['PERS_GENDER'];
+		$this->code   = $result[0]['PERS_CODE'];
+
+	}
+
+	/**
+	 * [save description]
+	 * @return void
+	 */
+	public function save()
+	{
+		switch ($this->saveMode)
+		{
+			case 'insert':
+				# code...
+				break;
+			case 'update':
+				# code...
+				break;
+
+			default:
+				# code...
+				break;
+		}
+	}
+
+	/**
+	 * calculates kethea 9-digit code
+	 * @return string kethea code
+	 */
+	public function calcKetheaCode()
+	{
+		# code...
+	}
+
+	/**
+     * [loadFromFile description]
+     * @param  string $value [description]
+     * @return [type]        [description]
      */
-    public function __construct($di, $id = '')
-    {
-        parent::__construct($di);
-        if ($id)
-        {
-            $this->idNr = $id;
-            $this->loadPersonAttrs($id);
-            $this->saveMode = 'update';
-        }
-        $this->data['PERS_IS_MEMBER'] = 1;
-        $this->data['USER_CREATE']    = 1;
+	public function loadFromFile($value = '')
+	{
+		$result = 0;
+		$sql    = "SELECT a.PERS_ID FROM {$this->schema}.FE_PERSONS a, {$this->schema}.FE_PHYSICAL_FILES b WHERE a.pers_id=b.phys_pers_id  and b.phys_display_code = '{$value}'";
+		$res    = $this->executeQuery($sql);
+		if ($res)
+		{
+			$result     = 1;
+            $this->loadPersonAttrs($res[0]['PERS_ID']);
+		}
+		return $result;
 
-    }
-
-    /**
-     * @param int $id person id
-     */
-    private function loadPersonAttrs($id = '')
-    {
-        $sql          = "SELECT * from {$this->schema}.FE_PERSONS where PERS_ID={$id}";
-        $result       = $this->executeQuery($sql);
-        $this->data   = $result[0];
-        $this->fname  = $result[0]['PERS_FIRST_NAME'];
-        $this->lname  = $result[0]['PERS_LAST_NAME'];
-        $this->mother = $result[0]['PERS_MOTHER_NAME'];
-        $this->father = $result[0]['PERS_FATHER_NAME'];
-        $this->dob    = $result[0]['PERS_BIRTH_DATE'];
-        $this->gender = $result[0]['PERS_GENDER'];
-        $this->code   = $result[0]['PERS_CODE'];
-
-    }
-
-    /**
-     * [save description]
-     * @return void
-     */
-    public function save()
-    {
-        switch ($this->saveMode)
-        {
-            case 'insert':
-                # code...
-                break;
-            case 'update':
-                # code...
-                break;
-
-            default:
-                # code...
-                break;
-        }
-    }
-
-    /**
-     * calculates kethea 9-digit code
-     * @return string kethea code
-     */
-    public function calcKetheaCode()
-    {
-        # code...
-    }
+	}
 }

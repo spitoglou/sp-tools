@@ -22,8 +22,8 @@ class History extends Base
 			$this->loadAttrs($id);
 			$this->saveMode = 'update';
 		}
-		$pehi['PEHI_TYPE']=1;
-		$pehi['USER_CREATE']=1;
+		$this->pehi['PEHI_TYPE']   = 1;
+		$this->pehi['USER_CREATE'] = 1;
 
 	}
 
@@ -37,19 +37,64 @@ class History extends Base
 		$this->pehi = $result[0];
 
 		$this->person = new Person($this->di, $this->pehi['PEHI_PERS_ID']);
-		$this->unit = new Unit($this->di, $this->pehi['PEHI_UNIT_ID']);
+		$this->unit   = new Unit($this->di, $this->pehi['PEHI_UNIT_ID']);
 
 	}
 
-	public function setUnit($value='')
+	/**
+	 * @param $value
+	 */
+	public function setUnit($value = '')
 	{
-		$pehi['PEHI_UNIT_ID']=$value;
-		$this->unit = new Unit($this->di, $value);
+		$this->pehi['PEHI_UNIT_ID'] = $value;
+		$this->unit           = new Unit($this->di, $value);
 	}
 
-	public function setPerson($value='')
+	/**
+	 * @param $value
+	 */
+	public function setPerson($value = '')
 	{
-		$pehi['PEHI_PERS_ID']=$value;
-		$this->person = new Person($this->di, $value);
+		$this->pehi['PEHI_PERS_ID'] = $value;
+		$this->person         = new Person($this->di, $value);
+	}
+
+	public function save()
+	{
+		//print_r($this->pehi);
+		switch ($this->saveMode)
+		{
+			case 'update':
+				# code...
+				break;
+
+			case 'insert':
+				$sql = "INSERT INTO {$this->schema}.FE_PERSONS_HISTORY (";
+				$sql.="PEHI_ID,";
+				$sql.="PEHI_UNIT_ID,";
+				$sql.="PEHI_PERS_ID,";
+				$sql.="PEHI_START_DATE,";
+				$sql.="PEHI_END_DATE,";
+				$sql.="PEHI_TYPE,";
+				$sql.="USER_CREATE,";
+				$sql.="DATE_CREATE";
+				$sql.=") VALUES (";
+				$sql.="{$this->schema}.SEQ_FE_PERSONS_HISTORY_PEHI_ID.NEXTVAL,";
+				$sql.="{$this->pehi['PEHI_UNIT_ID']},";
+				$sql.="{$this->pehi['PEHI_PERS_ID']},";
+				$sql.= $this->formatDateForSQL($this->pehi['PEHI_START_DATE']).",";
+				$sql.= $this->formatDateForSQL($this->pehi['PEHI_END_DATE']).",";
+				$sql.="{$this->pehi['PEHI_TYPE']},";
+				$sql.="1,";
+				$sql.="SYSDATE";
+				$sql.=")";
+				$this->di->logger->debug($sql,"PEHI INSERT QUERY");
+				$this->executeStatement($sql);
+				break;
+
+			default:
+				# code...
+				break;
+		}
 	}
 }
