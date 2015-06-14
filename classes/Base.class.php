@@ -58,7 +58,7 @@ abstract class Base
         }
         catch (Exception $e)
         {
-            $this->di->logger->debug($sql.' / '.$this->di->db->last_error, 'Query Error');
+            $this->di->logger->debug($sql.' / '.$this->di->db->last_error, 'Statement Error');
         }
     }
 

@@ -6,7 +6,7 @@
 
 // initialization
 //use League\Csv\Reader;
-$_SESSION['DefaultDateFormat']='d/m/Y';
+$_SESSION['DefaultDateFormat'] = 'd/m/Y';
 require_once "vendor/autoload.php";
 require_once "lib/DateFunctions.inc";
 require_once "lib/php-console-master/src/PhpConsole/__autoload.php";
@@ -30,7 +30,7 @@ $app         = new Di();
 $app->logger = $handler;
 
 //config
-$config['dbtype']    = 'orcl';
+$config['dbtype']    = 'stub';
 $config['my_dbuser'] = 'root';
 $config['my_dbpass'] = '';
 $config['dbhost']    = 'localhost';
@@ -58,6 +58,10 @@ switch ($config['dbtype'])
         //putenv('NLS_LANG=AMERICAN_AMERICA.EL8ISO8859P7');
         putenv('NLS_LANG=GREEK_GREECE.AL32UTF8');
         $db = new ezSQL_oracle8_9($config['or_dbuser'], $config['or_dbpass'], $config['service']);
+        break;
+    case 'stub':
+        //stub connection
+        $db = new DbStub($app);
         break;
 }
 
