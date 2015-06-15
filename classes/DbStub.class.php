@@ -14,8 +14,10 @@ class DbStub
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     * magic function __call
+     * @param  string $name      [description]
+     * @param  string $arguments [description]
+     * @return mixed            [description]
      */
     public function __call($name, $arguments)
     {

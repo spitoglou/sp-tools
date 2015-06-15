@@ -64,8 +64,8 @@ abstract class Base
 
     /**
      * [formatDateForSQL description]
-     * @param  [type] $DateEntry [description]
-     * @return [type]            [description]
+     * @param  string $DateEntry given date
+     * @return string            formatted sql date argument
      */
     public function formatDateForSQL($DateEntry)
     {
