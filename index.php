@@ -5,7 +5,6 @@
  */
 
 // initialization
-//use League\Csv\Reader;
 $_SESSION['DefaultDateFormat'] = 'd/m/Y';
 require_once "vendor/autoload.php";
 require_once "lib/DateFunctions.inc";
@@ -69,13 +68,4 @@ $app->db = $db;
 
 echo '<pre>';
 
-// $pers = new Person($app, 174);
-// var_dump($pers);
-// $evn=new Event($app,2371,'assignment');
-// var_dump($evn);
-// echo $evn->person->lname;
-// $his = new History($app, 21);
-// var_dump($his);
-
-//$a = new Reader();
 require "csvtest.php";

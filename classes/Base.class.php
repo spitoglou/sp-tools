@@ -69,7 +69,8 @@ abstract class Base
      */
     public function formatDateForSQL($DateEntry)
     {
-        $DateEntry = trim($DateEntry);
+        $DateEntry  = trim($DateEntry);
+        $Date_Array = array();
 
         if (Is_Date($DateEntry))
         {
