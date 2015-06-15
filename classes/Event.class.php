@@ -20,6 +20,12 @@ class Event extends Base
     public $person;
     private $transferUnit;
 
+    /**
+     * constructor
+     * @param Di $di   dependencies
+     * @param string $id   id
+     * @param string $type event type
+     */
     public function __construct($di, $id = '', $type = '')
     {
         parent::__construct($di);
@@ -103,41 +109,10 @@ class Event extends Base
                 $sql .= "{$this->pevn['PEVN_PEHI_ID']},";
                 $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
                 $sql .= "1,";
-                $history  = new History($this->di, $this->pevn['PEVN_PEHI_ID']);
-                $comments = "TEST COMMENTS";
-                if ($this->type == 'assignment')
-    {
-                    $comments = "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ανατέθηκε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
-                }
-                if ($this->type == 'withdrawal')
-    {
-                    $comments = "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από την Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
-                }
-                if ($this->type == 'witdoutin')
-    {
-                    $comments = "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εντός ΚΕΘΕΑ)";
-                }
-                if ($this->type == 'witdoutout')
-    {
-                    $comments = "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εκτός ΚΕΘΕΑ)";
-                }
-                if ($this->type == 'transfer')
-    {
-                    $comments = "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε στην Υπηρεσία {$this->transferUnit->program->prog['PROG_NAME']} / {$this->transferUnit->structure->stru['STRU_NAME']} / {$this->transferUnit->unit['UNIT_NAME']}";
-                }
-                if ($this->type == 'completion')
-    {
-                    $comments = "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ολοκλήρωσε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
-                }
-                if ($this->type == 'graduation')
-    {
-                    $comments = "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποφοίτησε με επιτυχία από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']}";
-                }
-                $sql .= "'{$comments}',";
+                $sql .= "'{$this->makeComments()}',";
                 $sql .= "1,";
                 $sql .= "SYSDATE";
                 $sql .= ")";
-                // $this->di->logger->debug($sql, "PEVN INSERT QUERY");
                 $this->executeStatement($sql);
                 if ($this->type == 'assignment')
     {
@@ -156,7 +131,6 @@ class Event extends Base
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
                     $sql .= "0";
                     $sql .= ")";
-                    // $this->di->logger->debug($sql, "ASSI INSERT QUERY");
                     $this->executeStatement($sql);
                 }
                 if (in_array($this->type, array('withdrawal', 'witdoutin', 'witdoutout')))
@@ -190,7 +164,6 @@ class Event extends Base
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
                     $sql .= ")";
-                    // $this->di->logger->debug($sql, "WITD INSERT QUERY");
                     $this->executeStatement($sql);
                 }
                 if ($this->type == 'transfer')
@@ -216,7 +189,6 @@ class Event extends Base
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
                     $sql .= ")";
-                    // $this->di->logger->debug($sql, "TRAN INSERT QUERY");
                     $this->executeStatement($sql);
                 }
                 if ($this->type == 'completion')
@@ -234,7 +206,6 @@ class Event extends Base
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
                     $sql .= ")";
-                    // $this->di->logger->debug($sql, "ASSI INSERT QUERY");
                     $this->executeStatement($sql);
                 }
                 if ($this->type == 'graduation')
@@ -252,7 +223,6 @@ class Event extends Base
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
                     $sql .= ")";
-                    // $this->di->logger->debug($sql, "ASSI INSERT QUERY");
                     $this->executeStatement($sql);
                 }
                 break;
@@ -270,5 +240,43 @@ class Event extends Base
     public function setTransferUnit($id)
 {
         $this->transferUnit = new Unit($this->di, $id);
+    }
+
+    /**
+     * create comment line
+     * @return string comment line
+     */
+    private function makeComments()
+{
+        $history = new History($this->di, $this->pevn['PEVN_PEHI_ID']);
+        if ($this->type == 'assignment')
+    {
+            return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ανατέθηκε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
+        }
+        if ($this->type == 'withdrawal')
+    {
+            return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από την Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
+        }
+        if ($this->type == 'witdoutin')
+    {
+            return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εντός ΚΕΘΕΑ)";
+        }
+        if ($this->type == 'witdoutout')
+    {
+            return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εκτός ΚΕΘΕΑ)";
+        }
+        if ($this->type == 'transfer')
+    {
+            return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε στην Υπηρεσία {$this->transferUnit->program->prog['PROG_NAME']} / {$this->transferUnit->structure->stru['STRU_NAME']} / {$this->transferUnit->unit['UNIT_NAME']}";
+        }
+        if ($this->type == 'completion')
+    {
+            return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ολοκλήρωσε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
+        }
+        if ($this->type == 'graduation')
+    {
+            return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποφοίτησε με επιτυχία από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']}";
+        }
+        return "PLACEHOLDER COMMENTS";
     }
 }
