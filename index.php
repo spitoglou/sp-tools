@@ -30,7 +30,7 @@ $app         = new Di();
 $app->logger = $handler;
 
 //config
-$config['dbtype']    = 'stub';
+$config['dbtype']    = 'orcl';
 $config['my_dbuser'] = 'root';
 $config['my_dbpass'] = '';
 $config['dbhost']    = 'localhost';

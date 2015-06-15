@@ -88,7 +88,7 @@ class History extends Base
 				$sql.="1,";
 				$sql.="SYSDATE";
 				$sql.=")";
-				$this->di->logger->debug($sql,"PEHI INSERT QUERY");
+				//$this->di->logger->debug($sql,"PEHI INSERT QUERY");
 				$this->executeStatement($sql);
 				break;
 

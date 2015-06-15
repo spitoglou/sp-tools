@@ -80,7 +80,57 @@ class Person extends Base
 		switch ($this->saveMode)
 		{
 			case 'insert':
-				# code...
+				$sql = "INSERT INTO {$this->schema}.FE_PERSONS (";
+				$sql .= "PERS_ID,";
+				$sql .= "PERS_CODE,";
+				$sql .= "PERS_KETHEA_CODE,";
+				$sql .= "PERS_LAST_NAME,";
+				$sql .= "PERS_FIRST_NAME,";
+				$sql .= "PERS_FATHER_NAME,";
+				$sql .= "PERS_MOTHER_NAME,";
+				$sql .= "PERS_BIRTH_DATE,";
+				$sql .= "PERS_IS_MEMBER,";
+				$sql .= "PERS_GENDER,";
+				$sql .= "PERS_IS_ADDICT,";
+				$sql .= "USER_CREATE,";
+				$sql .= "DATE_CREATE";
+				$sql .= ") VALUES (";
+				$sql .= "{$this->schema}.SEQ_FE_PERSONS_PERS_ID.NEXTVAL,";
+				$sql .= "'{$this->data['PERS_CODE']}',";
+				$sql .= "'{$this->data['PERS_KETHEA_CODE']}',";
+				$sql .= "'{$this->data['PERS_LAST_NAME']}',";
+				$sql .= "'{$this->data['PERS_FIRST_NAME']}',";
+				$sql .= "'{$this->data['PERS_FATHER_NAME']}',";
+				$sql .= "'{$this->data['PERS_MOTHER_NAME']}',";
+				$sql .= $this->formatDateForSQL($this->data['PERS_BIRTH_DATE']).",";
+				$sql .= "1,"; 	//is_member
+				$this->data['PERS_GENDER'] = substr($this->data['PERS_KETHEA_CODE'], -1);
+				$sql .= "'{$this->data['PERS_GENDER']}',";
+				$sql .= "1,"; 	//is_addict
+				$sql .= "1,";
+				$sql .= "SYSDATE";
+				$sql .= ")";
+				//$this->di->logger->debug($sql,"PERS INSERT QUERY");
+				$this->executeStatement($sql);
+
+				$sql = "INSERT INTO {$this->schema}.FE_PHYSICAL_FILES (";
+				$sql .= "PHYS_ID,";
+				$sql .= "PHYS_CODE,";
+				$sql .= "PHYS_PERS_ID,";
+				$sql .= "PHYS_DISPLAY_CODE,";
+				$sql .= "USER_CREATE,";
+				$sql .= "DATE_CREATE";
+				$sql .= ") VALUES (";
+				$sql .= "{$this->schema}.SEQ_FE_PHYSICAL_FILES_PHYS_ID.NEXTVAL,";
+                $code=explode('-', $this->data['PERS_CODE'])[1];
+				$sql .= "'{$code}',";
+                $sql .= "{$this->schema}.SEQ_FE_PERSONS_PERS_ID.CURRVAL,";
+				$sql .= "'{$this->data['PERS_CODE']}',";
+				$sql .= "1,";
+				$sql .= "SYSDATE";
+				$sql .= ")";
+				//$this->di->logger->debug($sql,"PHYS INSERT QUERY");
+				$this->executeStatement($sql);
 				break;
 			case 'update':
 				# code...
@@ -97,24 +147,24 @@ class Person extends Base
 	 * @return string kethea code
 	 */
 	public function calcKetheaCode()
-	{
+{
 		# code...
 	}
 
 	/**
-     * [loadFromFile description]
-     * @param  string $value [description]
-     * @return [type]        [description]
-     */
+	 * [loadFromFile description]
+	 * @param  string $value [description]
+	 * @return [type]        [description]
+	 */
 	public function loadFromFile($value = '')
-	{
+{
 		$result = 0;
 		$sql    = "SELECT a.PERS_ID FROM {$this->schema}.FE_PERSONS a, {$this->schema}.FE_PHYSICAL_FILES b WHERE a.pers_id=b.phys_pers_id  and b.phys_display_code = '{$value}'";
 		$res    = $this->executeQuery($sql);
 		if ($res)
-		{
-			$result     = 1;
-            $this->loadPersonAttrs($res[0]['PERS_ID']);
+	{
+			$result = 1;
+			$this->loadPersonAttrs($res[0]['PERS_ID']);
 		}
 		return $result;
 
