@@ -3,12 +3,16 @@
 require_once "process.php";
 
 $final = true;
-$file  = 'oxigono1';
+$extended=false;
 $file  = 'kittaro';
+$file  = 'oxigono1';
+$file  = 'oxigono2';
+$file  = 'oxigono3';
+$file  = 'oxigono4';
 
 require_once $file.'_def.php';
 
-curatePersons($file, $fakelos);
+curatePersons($file, $fakelos, $extended);
 
 foreach ($procArr as $value)
 {

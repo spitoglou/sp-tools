@@ -101,6 +101,22 @@ function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
 							$newpevn->pevn['PEVN_DATE']    = $dateEnd;
 							$newpevn->save();
 							break;
+						case 'transport':
+							unset($newpevn);
+							$newpevn                       = new Event($app, '', 'transport');
+							$newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
+							$newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
+							$newpevn->pevn['PEVN_DATE']    = $dateEnd;
+							$newpevn->save();
+							break;
+						case 'release':
+							unset($newpevn);
+							$newpevn                       = new Event($app, '', 'release');
+							$newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
+							$newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
+							$newpevn->pevn['PEVN_DATE']    = $dateEnd;
+							$newpevn->save();
+							break;
 
 						default:
 							# code...
@@ -154,9 +170,19 @@ function curatePersons($file, $fakelos, $extended = false)
 			$pers->data['PERS_MOTHER_NAME'] = '----------';
 			if ($extended)
 			{
-				$pers->data['PERS_BIRTH_DATE']  = $csv_line[6];
-				$pers->data['PERS_FATHER_NAME'] = $csv_line[7];
-				$pers->data['PERS_MOTHER_NAME'] = $csv_line[8];
+				if ($csv_line[6])
+				{
+					$pers->data['PERS_BIRTH_DATE'] = $csv_line[6];
+				}
+				if ($csv_line[7])
+				{
+					$pers->data['PERS_FATHER_NAME'] = $csv_line[7];
+				}
+				if ($csv_line[8])
+				{
+					$pers->data['PERS_MOTHER_NAME'] = $csv_line[8];
+				}
+
 			}
 			$pers->data['PERS_CODE'] = $csv_line[$fakelos];
 			$pers->save();

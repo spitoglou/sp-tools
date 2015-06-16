@@ -2,6 +2,7 @@
     "require": {
         "jv2222/ezsql": "dev-master",
         "league/csv": "^7.1",
-        "nesbot/carbon": "^1.19"
+        "nesbot/carbon": "^1.19",
+        "simpletest/simpletest": "^1.1"
     }
 }
