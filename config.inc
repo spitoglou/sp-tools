@@ -3,8 +3,8 @@
 // initialization
 $_SESSION['DefaultDateFormat'] = 'd/m/Y';
 require_once "vendor/autoload.php";
-require_once "lib/DateFunctions.inc";
-require_once "lib/php-console-master/src/PhpConsole/__autoload.php";
+require_once "vendor/custom/DateFunctions.inc";
+require_once "vendor/custom/php-console-master/src/PhpConsole/__autoload.php";
 
 $handler = PhpConsole\Handler::getInstance();
 $handler->getConnector()->setSourcesBasePath($_SERVER['DOCUMENT_ROOT']);
@@ -25,7 +25,7 @@ $app         = new Di();
 $app->logger = $handler;
 
 //config
-$config['dbtype']    = 'orcl';
+$config['dbtype']    = 'stub';
 $config['my_dbuser'] = 'root';
 $config['my_dbpass'] = '';
 $config['dbhost']    = 'localhost';

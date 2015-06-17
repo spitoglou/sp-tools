@@ -5,14 +5,14 @@
  * POP3 access must also be enabled in your account.
  * See: http://www.ghacks.net/2009/06/19/gmail-pop3-configuration/
  */
-include 'lib/POP3Server.php';
-include 'lib/mime_parser.php';
-include 'lib/rfc822_addresses.php';
+include 'vendor/custom/POP3Server.php';
+include 'vendor/custom/mime_parser.php';
+include 'vendor/custom/rfc822_addresses.php';
 define('POP_USERNAME', 'hostmaster@mantis.cssa.tk');
 define('POP_PASSWORD', 'potemkin');
 
 #initialization
-require_once "lib/php-console-master/src/PhpConsole/__autoload.php";
+require_once "vendor/custom/php-console-master/src/PhpConsole/__autoload.php";
 
 $handler = PhpConsole\Handler::getInstance();
 $handler->getConnector()->setSourcesBasePath($_SERVER['DOCUMENT_ROOT']);

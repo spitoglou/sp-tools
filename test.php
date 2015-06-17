@@ -5,7 +5,7 @@
  */
 
 // initialization
-require_once "lib/php-console-master/src/PhpConsole/__autoload.php";
+require_once "vendor/custom/php-console-master/src/PhpConsole/__autoload.php";
 
 $handler = PhpConsole\Handler::getInstance();
 $handler->getConnector()->setSourcesBasePath($_SERVER['DOCUMENT_ROOT']);
