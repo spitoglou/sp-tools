@@ -35,10 +35,10 @@ class MyPOP3Server extends POP3Server
     }
 }
 /**
- * Class MyMessage
- *
- * Optional: Process the mail message from the server after the connection is closed.
- */
+     * Class MyMessage
+     *
+     * Optional: Process the mail message from the server after the connection is closed.
+     */
 class MyMessage extends POP3Message
 {
     public function process()
@@ -93,11 +93,11 @@ class MyMessage extends POP3Message
             /* Read a message from a string instead of a file */
             'Data' => $this->message,
 
-                           /* Save the message body parts to a directory */
-                           /* 'SaveBody'=>'/tmp', */
+                            /* Save the message body parts to a directory */
+                            /* 'SaveBody'=>'/tmp', */
 
-                           /* Do not retrieve or save message body parts */
-                           //'SkipBody' => 1,
+                            /* Do not retrieve or save message body parts */
+                            //'SkipBody' => 1,
         );
         if (!$mime->Decode($parameters, $decoded))
         {
@@ -135,7 +135,7 @@ class MyMessage extends POP3Message
 
                 }
             }
-            for ($warning = 0, Reset($mime->warnings); $warning < count($mime->warnings);Next($mime->warnings), $warning++)
+            for ($warning = 0, Reset($mime->warnings); $warning < count($mime->warnings); Next($mime->warnings), $warning++)
             {
                 $w = Key($mime->warnings);
                 echo 'Warning: ', $mime->warnings[$w], ' at position ', $w;
@@ -151,7 +151,8 @@ class MyMessage extends POP3Message
     }
 }
 // Minimilistic Example
-try {
+try
+{
     $server = new POP3Server('ssl://mantis.cssa.tk', 995, POP_USERNAME, POP_PASSWORD);
     /*
      * The next line:

@@ -67,26 +67,32 @@ $parameters = array(
  * The following lines are for testing purposes.
  * Remove these lines when adapting this example to real applications.
  */
-if (defined('__TEST')) {
-    if (isset($__test_options['parameters'])) {
+if (defined('__TEST'))
+{
+    if (isset($__test_options['parameters']))
+    {
         $parameters = $__test_options['parameters'];
     }
 
-    if (isset($__test_options['mbox'])) {
+    if (isset($__test_options['mbox']))
+    {
         $mime->mbox = $__test_options['mbox'];
     }
 
-    if (isset($__test_options['decode_bodies'])) {
+    if (isset($__test_options['decode_bodies']))
+    {
         $mime->decode_bodies = $__test_options['decode_bodies'];
     }
 
-    if (isset($__test_options['use_part_file_names'])) {
+    if (isset($__test_options['use_part_file_names']))
+    {
         $mime->use_part_file_names = $__test_options['use_part_file_names'];
     }
 
 }
 
-if (!$mime->Decode($parameters, $decoded)) {
+if (!$mime->Decode($parameters, $decoded))
+{
     echo 'MIME message decoding error: '.$mime->error.' at position '.$mime->error_position;
     if ($mime->track_lines
         && $mime->GetPositionLine($mime->error_position, $line, $column)
@@ -105,11 +111,14 @@ else
         echo 'Message ', ($message + 1), ':', "\n";
         // var_dump($decoded[$message]);
         print_r($decoded[$message]);
-        if ($mime->decode_bodies) {
+        if ($mime->decode_bodies)
+        {
             if ($mime->Analyze($decoded[$message], $results))
-            // var_dump($results);
+            {
+                        // var_dump($results);
             {
                 print_r($results);
+            }
             }
             else
             {
@@ -118,7 +127,7 @@ else
 
         }
     }
-    for ($warning = 0, Reset($mime->warnings); $warning < count($mime->warnings);Next($mime->warnings), $warning++)
+    for ($warning = 0, Reset($mime->warnings); $warning < count($mime->warnings); Next($mime->warnings), $warning++)
     {
         $w = Key($mime->warnings);
         echo 'Warning: ', $mime->warnings[$w], ' at position ', $w;

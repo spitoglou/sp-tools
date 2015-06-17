@@ -101,9 +101,9 @@ class Event extends Base
      * @return void
      */
     public function save()
-{
-        switch ($this->saveMode)
     {
+        switch ($this->saveMode)
+        {
             case 'insert':
                 $sql = "INSERT INTO {$this->schema}.FE_PERSON_EVENTS (";
                 $sql .= "PEVN_ID,";
@@ -126,7 +126,7 @@ class Event extends Base
                 $sql .= ")";
                 $this->executeStatement($sql);
                 if ($this->type == 'assignment')
-    {
+                {
                     $sql = "INSERT INTO {$this->schema}.FE_ASSIGNMENTS (";
                     $sql .= "ASSI_ID,";
                     $sql .= "ASSI_PEVN_ID,";
@@ -145,7 +145,7 @@ class Event extends Base
                     $this->executeStatement($sql);
                 }
                 if (in_array($this->type, array('withdrawal', 'witdoutin', 'witdoutout')))
-    {
+                {
                     $sql = "INSERT INTO {$this->schema}.FE_WITHDRAWALS (";
                     $sql .= "WITD_ID,";
                     $sql .= "WITD_PEVN_ID,";
@@ -160,15 +160,15 @@ class Event extends Base
                     $sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
                     switch ($this->type)
         {
-                    case 'withdrawal':
-                            $sql .= "1,NULL,";
-                            break;
-                    case 'witdoutin':
-                            $sql .= "2,0,";
-                            break;
-                    case 'witdoutout':
-                            $sql .= "2,1,";
-                            break;
+                        case 'withdrawal':
+                                $sql .= "1,NULL,";
+                                break;
+                        case 'witdoutin':
+                                $sql .= "2,0,";
+                                break;
+                        case 'witdoutout':
+                                $sql .= "2,1,";
+                                break;
                     }
                     $sql .= "7,";
                     $sql .= "1,";
@@ -178,7 +178,7 @@ class Event extends Base
                     $this->executeStatement($sql);
                 }
                 if ($this->type == 'transfer')
-    {
+                {
                     $sql = "INSERT INTO {$this->schema}.FE_TRANSFERS (";
                     $sql .= "TRAN_ID,";
                     $sql .= "TRAN_PEVN_ID,";
@@ -192,7 +192,7 @@ class Event extends Base
                     $sql .= ") VALUES (";
                     $sql .= "{$this->schema}.SEQ_FE_TRANSFERS_TRAN_ID.NEXTVAL,";
                     $sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
-                    $sql .= $this->transferUnit->unit['UNIT_ID'].","; 	//unit_id
+                    $sql .= $this->transferUnit->unit['UNIT_ID'].","; //unit_id
                     $sql .= "0,";
                     $sql .= "0,";
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
@@ -204,20 +204,20 @@ class Event extends Base
                 }
                 if ($this->type == 'completion')
     {
-                    $this->insPlainEvent('FE_COMPLETIONS','SEQ_FE_COMPLETIONS_COML_ID','COML');
+                    $this->insPlainEvent('FE_COMPLETIONS', 'SEQ_FE_COMPLETIONS_COML_ID', 'COML');
                 }
                 if ($this->type == 'graduation')
     {
-                    $this->insPlainEvent('FE_GRADUATIONS','SEQ_FE_GRADUATIONS_GRAD_ID','GRAD');
+                    $this->insPlainEvent('FE_GRADUATIONS', 'SEQ_FE_GRADUATIONS_GRAD_ID', 'GRAD');
                 }
                 if ($this->type == 'transport')
     {
-                    $this->insPlainEvent('FE_TRANSPORTS','SEQ_FE_TRANSPORTS_TRAP_ID','TRAP');
+                    $this->insPlainEvent('FE_TRANSPORTS', 'SEQ_FE_TRANSPORTS_TRAP_ID', 'TRAP');
 
                 }
                 if ($this->type == 'release')
     {
-                    $this->insPlainEvent('FE_RELEASES','SEQ_FE_RELEASES_RELE_ID','RELE');
+                    $this->insPlainEvent('FE_RELEASES', 'SEQ_FE_RELEASES_RELE_ID', 'RELE');
                 }
                 break;
 
@@ -232,7 +232,7 @@ class Event extends Base
      * @param int $id unit_id
      */
     public function setTransferUnit($id)
-{
+    {
         $this->transferUnit = new Unit($this->di, $id);
     }
 
@@ -241,42 +241,42 @@ class Event extends Base
      * @return string comment line
      */
     private function makeComments()
-{
+    {
         $history = new History($this->di, $this->pevn['PEVN_PEHI_ID']);
         if ($this->type == 'assignment')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ανατέθηκε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
         }
         if ($this->type == 'withdrawal')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από την Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
         }
         if ($this->type == 'witdoutin')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εντός ΚΕΘΕΑ)";
         }
         if ($this->type == 'witdoutout')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εκτός ΚΕΘΕΑ)";
         }
         if ($this->type == 'transfer')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε στην Υπηρεσία {$this->transferUnit->program->prog['PROG_NAME']} / {$this->transferUnit->structure->stru['STRU_NAME']} / {$this->transferUnit->unit['UNIT_NAME']}";
         }
         if ($this->type == 'completion')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ολοκλήρωσε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
         }
         if ($this->type == 'graduation')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποφοίτησε με επιτυχία από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']}";
         }
         if ($this->type == 'transport')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']} λόγω Μεταγωγής";
         }
         if ($this->type == 'release')
-    {
+        {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']} λόγω Αποφυλάκισης";
         }
         return "PLACEHOLDER COMMENTS";
@@ -288,7 +288,7 @@ class Event extends Base
      * @param $prefix
      */
     private function insPlainEvent($table, $seq, $prefix)
-{
+    {
         $sql = "INSERT INTO {$this->schema}.{$table} (";
         $sql .= "{$prefix}_ID,";
         $sql .= "{$prefix}_PEVN_ID,";

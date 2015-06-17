@@ -12,6 +12,9 @@ class Structure extends Base
 	public $stru = array();
 	public $program;
 
+	/**
+	 * @param Di $di
+	 */
 	function __construct($di, $id = '')
 	{
 		parent::__construct($di);

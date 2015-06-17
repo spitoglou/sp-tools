@@ -1,8 +1,8 @@
 <?php
 /**
- *  @author Stavros Pitoglou <spitoglou@gmail.com>
- *  @version 0.1 Initial Tests
- */
+     *  @author Stavros Pitoglou <spitoglou@gmail.com>
+     *  @version 0.1 Initial Tests
+     */
 
 // initialization
 require_once "vendor/custom/php-console-master/src/PhpConsole/__autoload.php";
@@ -69,9 +69,9 @@ $handler->debug($instance);
 
 //error handling
 
-echo $stavros;                         // undefined var
+echo $stavros; // undefined var
 file_get_contents('not_existed.file'); // non-existent file
-                                       // uncommenting thw next line showcases exception handling (even if the script fails to complete execution)
-                                       //throw new Exception('Some caught exception');
+                                        // uncommenting thw next line showcases exception handling (even if the script fails to complete execution)
+                                        //throw new Exception('Some caught exception');
 
 echo "End of script execution";

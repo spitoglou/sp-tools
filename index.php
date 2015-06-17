@@ -1,8 +1,8 @@
 <?php
 /**
- * index.php.
- * @author Stavros Pitoglou <s.pitoglou@csl.gr>
- */
+     * index.php.
+     * @author Stavros Pitoglou <s.pitoglou@csl.gr>
+     */
 require_once 'config.inc';
 
 

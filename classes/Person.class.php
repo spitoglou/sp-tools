@@ -1,8 +1,8 @@
 <?php
 /**
- * Person Class File
- * @author Stavros Pitoglou <s.pitoglou@csl.gr>
- */
+     * Person Class File
+     * @author Stavros Pitoglou <s.pitoglou@csl.gr>
+     */
 
 /**
  * Class Person
@@ -103,10 +103,10 @@ class Person extends Base
                 $sql .= "'{$this->data['PERS_FATHER_NAME']}',";
                 $sql .= "'{$this->data['PERS_MOTHER_NAME']}',";
                 $sql .= $this->formatDateForSQL($this->data['PERS_BIRTH_DATE']).",";
-                $sql .= "1,";     //is_member
+                $sql .= "1,"; //is_member
                 $this->data['PERS_GENDER'] = substr(trim($this->data['PERS_KETHEA_CODE']), -1);
                 $sql .= "'{$this->data['PERS_GENDER']}',";
-                $sql .= "1,";     //is_addict
+                $sql .= "1,"; //is_addict
                 $sql .= "1,";
                 $sql .= "SYSDATE";
                 $sql .= ")";
@@ -147,7 +147,7 @@ class Person extends Base
      * @return string kethea code
      */
     public function calcKetheaCode()
-{
+    {
         # code...
     }
 
@@ -160,12 +160,12 @@ class Person extends Base
      * @return int            1:success 2:failure
      */
     public function loadFromFile($value = '')
-{
+    {
         $result = 0;
         $sql    = "SELECT a.PERS_ID FROM {$this->schema}.FE_PERSONS a, {$this->schema}.FE_PHYSICAL_FILES b WHERE a.pers_id=b.phys_pers_id  and b.phys_display_code = '{$value}'";
         $res    = $this->executeQuery($sql);
         if ($res)
-    {
+        {
             $result = 1;
             $this->loadPersonAttrs($res[0]['PERS_ID']);
         }

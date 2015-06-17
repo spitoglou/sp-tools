@@ -26,7 +26,8 @@ abstract class Base
      */
     public function executeQuery($sql)
     {
-        try {
+        try
+        {
             $result = $this->di->db->get_results($sql, ARRAY_A);
             if (!$result)
             {
@@ -49,7 +50,8 @@ abstract class Base
      */
     public function executeStatement($sql)
     {
-        try {
+        try
+        {
             $result = $this->di->db->query($sql);
             if (!$result)
             {
@@ -95,15 +97,15 @@ abstract class Base
                 $Date_Array[2] = substr($DateEntry, 6, 2);
             }
 
-            if ((int) $Date_Array[2] < 60)
+            if ((int)$Date_Array[2] < 60)
             {
                 $Date_Array[2] = '20'.$Date_Array[2];
             }
-            elseif ((int) $Date_Array[2] > 59 && (int) $Date_Array[2] < 100)
+            elseif ((int)$Date_Array[2] > 59 && (int)$Date_Array[2] < 100)
             {
                 $Date_Array[0] = '19'.$Date_Array[2];
             }
-            elseif ((int) $Date_Array[2] > 9999)
+            elseif ((int)$Date_Array[2] > 9999)
             {
                 return 0;
             }

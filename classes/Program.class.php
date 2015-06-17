@@ -1,8 +1,8 @@
 <?php
 /**
- * program class
- * @author Stavros Pitoglou <s.pitoglou@csl.gr>
- */
+     * program class
+     * @author Stavros Pitoglou <s.pitoglou@csl.gr>
+     */
 
 /**
  * Program Class
