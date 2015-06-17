@@ -144,7 +144,7 @@ class Event extends Base
                     $sql .= ")";
                     $this->executeStatement($sql);
                 }
-                if (in_array($this->type, array('withdrawal', 'witdoutin', 'witdoutout')))
+                elseif (in_array($this->type, array('withdrawal', 'witdoutin', 'witdoutout')))
                 {
                     $sql = "INSERT INTO {$this->schema}.FE_WITHDRAWALS (";
                     $sql .= "WITD_ID,";
@@ -177,7 +177,7 @@ class Event extends Base
                     $sql .= ")";
                     $this->executeStatement($sql);
                 }
-                if ($this->type == 'transfer')
+                elseif ($this->type == 'transfer')
                 {
                     $sql = "INSERT INTO {$this->schema}.FE_TRANSFERS (";
                     $sql .= "TRAN_ID,";
@@ -202,20 +202,20 @@ class Event extends Base
                     $sql .= ")";
                     $this->executeStatement($sql);
                 }
-                if ($this->type == 'completion')
+                elseif ($this->type == 'completion')
     {
                     $this->insPlainEvent('FE_COMPLETIONS', 'SEQ_FE_COMPLETIONS_COML_ID', 'COML');
                 }
-                if ($this->type == 'graduation')
+                elseif ($this->type == 'graduation')
     {
                     $this->insPlainEvent('FE_GRADUATIONS', 'SEQ_FE_GRADUATIONS_GRAD_ID', 'GRAD');
                 }
-                if ($this->type == 'transport')
+                elseif ($this->type == 'transport')
     {
                     $this->insPlainEvent('FE_TRANSPORTS', 'SEQ_FE_TRANSPORTS_TRAP_ID', 'TRAP');
 
                 }
-                if ($this->type == 'release')
+                elseif ($this->type == 'release')
     {
                     $this->insPlainEvent('FE_RELEASES', 'SEQ_FE_RELEASES_RELE_ID', 'RELE');
                 }
@@ -247,35 +247,35 @@ class Event extends Base
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ανατέθηκε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
         }
-        if ($this->type == 'withdrawal')
+        elseif ($this->type == 'withdrawal')
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από την Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
         }
-        if ($this->type == 'witdoutin')
+        elseif ($this->type == 'witdoutin')
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εντός ΚΕΘΕΑ)";
         }
-        if ($this->type == 'witdoutout')
+        elseif ($this->type == 'witdoutout')
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εκτός ΚΕΘΕΑ)";
         }
-        if ($this->type == 'transfer')
+        elseif ($this->type == 'transfer')
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε στην Υπηρεσία {$this->transferUnit->program->prog['PROG_NAME']} / {$this->transferUnit->structure->stru['STRU_NAME']} / {$this->transferUnit->unit['UNIT_NAME']}";
         }
-        if ($this->type == 'completion')
+        elseif ($this->type == 'completion')
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ολοκλήρωσε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
         }
-        if ($this->type == 'graduation')
+        elseif ($this->type == 'graduation')
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποφοίτησε με επιτυχία από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']}";
         }
-        if ($this->type == 'transport')
+        elseif ($this->type == 'transport')
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']} λόγω Μεταγωγής";
         }
-        if ($this->type == 'release')
+        elseif ($this->type == 'release')
         {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']} λόγω Αποφυλάκισης";
         }
