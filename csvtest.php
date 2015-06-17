@@ -9,6 +9,7 @@ $file  = 'oxigono1';
 $file  = 'oxigono2';
 $file  = 'oxigono3';
 $file  = 'oxigono4';
+$file  = 'kittaro2';
 
 require_once $file.'_def.php';
 

@@ -25,14 +25,14 @@ $app         = new Di();
 $app->logger = $handler;
 
 //config
-$config['dbtype']    = 'stub';
+$config['dbtype']    = 'orcl';
 $config['my_dbuser'] = 'root';
 $config['my_dbpass'] = '';
 $config['dbhost']    = 'localhost';
 $config['database']  = 'socservice';
 $config['service']   = '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.84)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))';
-$config['schema']    = 'FE_PROD';
 $config['schema']    = 'FE_TEST';
+$config['schema']    = 'FE_PROD';
 $config['or_dbuser'] = 'CS';
 $config['or_dbpass'] = 'CS';
 

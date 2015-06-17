@@ -104,7 +104,7 @@ class Person extends Base
                 $sql .= "'{$this->data['PERS_MOTHER_NAME']}',";
                 $sql .= $this->formatDateForSQL($this->data['PERS_BIRTH_DATE']).",";
                 $sql .= "1,";     //is_member
-                $this->data['PERS_GENDER'] = substr($this->data['PERS_KETHEA_CODE'], -1);
+                $this->data['PERS_GENDER'] = substr(trim($this->data['PERS_KETHEA_CODE']), -1);
                 $sql .= "'{$this->data['PERS_GENDER']}',";
                 $sql .= "1,";     //is_addict
                 $sql .= "1,";
