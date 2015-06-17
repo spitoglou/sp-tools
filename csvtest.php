@@ -3,7 +3,7 @@
 require_once "process.php";
 
 $final = true;
-$extended=false;
+$extended = false;
 $file  = 'kittaro';
 $file  = 'oxigono1';
 $file  = 'oxigono2';
