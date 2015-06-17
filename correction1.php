@@ -1,4 +1,9 @@
 <?php
+/**
+ * correction after bug of not creating transports and releases
+ * due to forgotten break; statements
+ */
+
 
 require_once 'config.inc';
 
@@ -9,7 +14,6 @@ echo '<pre>';
 $sql    = "SELECT * FROM FE_PROD.FE_PERSON_EVENTS where PEVN_COMMENTS like '%Αποφυλάκισης'";
 $sql    = "SELECT * FROM FE_PROD.FE_PERSON_EVENTS where PEVN_COMMENTS like '%Μεταγωγής'";
 $result = $db->get_results($sql, ARRAY_A);
-// print_r($result);
 
 foreach ($result as $key => $value)
 {

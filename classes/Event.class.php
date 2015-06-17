@@ -204,71 +204,20 @@ class Event extends Base
 				}
 				if ($this->type == 'completion')
 	{
-					$sql = "INSERT INTO {$this->schema}.FE_COMPLETIONS (";
-					$sql .= "COML_ID,";
-					$sql .= "COML_PEVN_ID,";
-					$sql .= "USER_CREATE,";
-					$sql .= "DATE_CREATE,";
-					$sql .= "DATE_UPDATE";
-					$sql .= ") VALUES (";
-					$sql .= "{$this->schema}.SEQ_FE_COMPLETIONS_COML_ID.NEXTVAL,";
-					$sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
-					$sql .= "1,";
-					$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
-					$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
-					$sql .= ")";
-					$this->executeStatement($sql);
+					$this->insPlainEvent('FE_COMPLETIONS','SEQ_FE_COMPLETIONS_COML_ID','COML');
 				}
 				if ($this->type == 'graduation')
 	{
-					$sql = "INSERT INTO {$this->schema}.FE_GRADUATIONS (";
-					$sql .= "GRAD_ID,";
-					$sql .= "GRAD_PEVN_ID,";
-					$sql .= "USER_CREATE,";
-					$sql .= "DATE_CREATE,";
-					$sql .= "DATE_UPDATE";
-					$sql .= ") VALUES (";
-					$sql .= "{$this->schema}.SEQ_FE_GRADUATIONS_GRAD_ID.NEXTVAL,";
-					$sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
-					$sql .= "1,";
-					$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
-					$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
-					$sql .= ")";
-					$this->executeStatement($sql);
+					$this->insPlainEvent('FE_GRADUATIONS','SEQ_FE_GRADUATIONS_GRAD_ID','GRAD');
 				}
 				if ($this->type == 'transport')
 	{
-					$sql = "INSERT INTO {$this->schema}.FE_TRANSPORTS (";
-					$sql .= "TRAP_ID,";
-					$sql .= "TRAP_PEVN_ID,";
-					$sql .= "USER_CREATE,";
-					$sql .= "DATE_CREATE,";
-					$sql .= "DATE_UPDATE";
-					$sql .= ") VALUES (";
-					$sql .= "{$this->schema}.SEQ_FE_TRANSPORTS_TRAP_ID.NEXTVAL,";
-					$sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
-					$sql .= "1,";
-					$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
-					$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
-					$sql .= ")";
-					$this->executeStatement($sql);
+					$this->insPlainEvent('FE_TRANSPORTS','SEQ_FE_TRANSPORTS_TRAP_ID','TRAP');
+
 				}
 				if ($this->type == 'release')
 	{
-					$sql = "INSERT INTO {$this->schema}.FE_RELEASES (";
-					$sql .= "RELE_ID,";
-					$sql .= "RELE_PEVN_ID,";
-					$sql .= "USER_CREATE,";
-					$sql .= "DATE_CREATE,";
-					$sql .= "DATE_UPDATE";
-					$sql .= ") VALUES (";
-					$sql .= "{$this->schema}.SEQ_FE_RELEASES_RELE_ID.NEXTVAL,";
-					$sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
-					$sql .= "1,";
-					$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
-					$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
-					$sql .= ")";
-					$this->executeStatement($sql);
+					$this->insPlainEvent('FE_RELEASES','SEQ_FE_RELEASES_RELE_ID','RELE');
 				}
 				break;
 
@@ -331,5 +280,28 @@ class Event extends Base
 			return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']} λόγω Αποφυλάκισης";
 		}
 		return "PLACEHOLDER COMMENTS";
+	}
+
+	/**
+	 * @param $table
+	 * @param $seq
+	 * @param $prefix
+	 */
+	private function insPlainEvent($table, $seq, $prefix)
+{
+		$sql = "INSERT INTO {$this->schema}.{$table} (";
+		$sql .= "{$prefix}_ID,";
+		$sql .= "{$prefix}_PEVN_ID,";
+		$sql .= "USER_CREATE,";
+		$sql .= "DATE_CREATE,";
+		$sql .= "DATE_UPDATE";
+		$sql .= ") VALUES (";
+		$sql .= "{$this->schema}.{$seq}.NEXTVAL,";
+		$sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
+		$sql .= "1,";
+		$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']).",";
+		$sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
+		$sql .= ")";
+		$this->executeStatement($sql);
 	}
 }
