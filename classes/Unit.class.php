@@ -36,4 +36,22 @@ class Unit extends Base
         $this->structure = new Structure($this->di, $this->unit['UNIT_STRU_ID']);
         $this->program   = new Program($this->di, $this->structure->stru['STRU_PROG_ID']);
     }
+
+    /**
+     * Delete current unit
+     * @return number 1:success,0:failure
+     */
+    public function deleteUnit()
+    {
+        $ret=0;
+        $sql = "DELETE FROM {$this->schema}.FE_USER_UNITS WHERE USUN_UNIT_ID={$this->unit['UNIT_ID']}";
+        $this->executeStatement($sql);
+        $sql = "DELETE FROM {$this->schema}.FE_UNITS where UNIT_ID={$this->unit['UNIT_ID']}";
+        $retVal = ($this->executeStatement($sql)) ? 1 : 0 ;
+        return $retVal;    
+    }
+
+
+
 }
+
