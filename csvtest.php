@@ -4,12 +4,17 @@ require_once "process.php";
 
 $final = true;
 $extended = false;
-$file  = 'kittaro';
-$file  = 'oxigono1';
-$file  = 'oxigono2';
-$file  = 'oxigono3';
-$file  = 'oxigono4';
-$file  = 'kittaro2';
+// $file  = 'kittaro';
+// $file  = 'oxigono1';
+// $file  = 'oxigono2';
+// $file  = 'oxigono3';
+// $file  = 'oxigono4';
+// $file  = 'kittaro2';
+// $file  = 'exelixis1';
+// $file  = 'exelixis2';
+// $file  = 'diavasi1';
+// $file  = 'diavasi2';
+$file  = 'drasi1';
 
 require_once $file.'_def.php';
 

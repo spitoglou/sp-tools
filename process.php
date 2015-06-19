@@ -23,12 +23,7 @@ function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
         $dateEnd   = $csv_line[$offset + 2];
         if ($pers->loadFromFile($csv_line[$fakelos]))
         {
-            // TODO : Remove $dateEnd from condition (open histories)
-            if (!$dateStart)
-            {
-                $errors[$i] .= '-non-existent dates|';
-            }
-            else
+            if ($dateStart)
             {
                 //check match fot event types
                 if (!$event[$csv_line[$offset + 3]])
@@ -148,7 +143,11 @@ function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
 }
 
 /**
- * @param $line
+ * [curatePersons description]
+ * @param  [type]  $file     [description]
+ * @param  [type]  $fakelos  [description]
+ * @param  boolean $extended [description]
+ * @return void
  */
 function curatePersons($file, $fakelos, $extended = false)
 {
