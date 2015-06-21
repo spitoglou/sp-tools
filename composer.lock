@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ba5df1444b3994bdd7c211f5eec9c3b6",
+    "hash": "92b2b31a8d503263a3f8ff7db0e495c5",
     "packages": [
         {
             "name": "jv2222/ezsql",
@@ -152,6 +152,57 @@
                 "time"
             ],
             "time": "2015-05-09 03:23:44"
+        },
+        {
+            "name": "raveren/kint",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raveren/kint.git",
+                "reference": "cc15a0be3fb4de4683fcc15cd68d1027378f86c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raveren/kint/zipball/cc15a0be3fb4de4683fcc15cd68d1027378f86c5",
+                "reference": "cc15a0be3fb4de4683fcc15cd68d1027378f86c5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Kint.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rokas Šleinius",
+                    "homepage": "https://github.com/raveren"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/raveren/kint/contributors"
+                }
+            ],
+            "description": "Kint - debugging helper for PHP developers",
+            "homepage": "https://github.com/raveren/kint",
+            "keywords": [
+                "debug",
+                "kint",
+                "php"
+            ],
+            "time": "2015-06-03 14:54:00"
         },
         {
             "name": "simpletest/simpletest",

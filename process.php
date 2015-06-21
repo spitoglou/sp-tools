@@ -1,12 +1,14 @@
 <?php
 
 /**
- * @param $file
- * @param $fakelos
- * @param $offset
- * @param $unit1
- * @param $unit2
- * @param $event
+ * main migration process function
+ * @param  string $file    file to be parsed
+ * @param  int  $fakelos offset for phys file data location
+ * @param  int $offset  offset for the first column to be parsed
+ * @param  int $unit1   UNIT_ID
+ * @param  int $unit2   UNIT_ID to transer to
+ * @param  array $event   array of event conversion table
+ * @return void          
  */
 function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
 {
@@ -143,9 +145,9 @@ function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
 }
 
 /**
- * [curatePersons description]
- * @param  [type]  $file     [description]
- * @param  [type]  $fakelos  [description]
+ * person insertion 
+ * @param  string  $file     file to be parsed
+ * @param  string  $fakelos  [description]
  * @param  boolean $extended [description]
  * @return void
  */
