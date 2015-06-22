@@ -129,7 +129,6 @@ class Person extends Base
                 $sql .= "1,";
                 $sql .= "SYSDATE";
                 $sql .= ")";
-                //$this->di->logger->debug($sql,"PHYS INSERT QUERY");
                 $this->executeStatement($sql);
                 break;
             case 'update':

@@ -1,6 +1,5 @@
 <?php
 $fakelos = 2;
-//$extended=true;
 
 $sk = 134;
 $ther = 132;
