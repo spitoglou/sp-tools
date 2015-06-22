@@ -13,8 +13,10 @@
 function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
 {
     global $app, $config;
+    $errors=array();
     echo '<pre>';
     ($fp = fopen("kethea_migr/{$file}.csv", 'r')) || die('problem');
+    $errors['header'] = "{$file}|offset:{$offset}";
     $i = 0;
     while ($csv_line = fgetcsv($fp, 1024, ';'))
     {
@@ -23,6 +25,7 @@ function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
         $pers      = new Person($app);
         $dateStart = $csv_line[$offset + 1];
         $dateEnd   = $csv_line[$offset + 2];
+
         if ($pers->loadFromFile($csv_line[$fakelos]))
         {
             if ($dateStart)
@@ -66,58 +69,58 @@ function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
                         case 'withdrawal':
                         case 'witdoutin':
                         case 'witdoutout':
-                            unset($newpevn);
-                            $newpevn                       = new Event($app, '', $event[$csv_line[$offset + 3]]);
-                            $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
-                            $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
-                            $newpevn->pevn['PEVN_DATE']    = $dateEnd;
-                            $newpevn->save();
-                            break;
+                        unset($newpevn);
+                        $newpevn                       = new Event($app, '', $event[$csv_line[$offset + 3]]);
+                        $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
+                        $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
+                        $newpevn->pevn['PEVN_DATE']    = $dateEnd;
+                        $newpevn->save();
+                        break;
                         case 'transfer':
-                            unset($newpevn);
-                            $newpevn                       = new Event($app, '', 'transfer');
-                            $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
-                            $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
-                            $newpevn->pevn['PEVN_DATE']    = $dateEnd;
-                            $newpevn->setTransferUnit($unit2);
-                            $newpevn->save();
-                            break;
+                        unset($newpevn);
+                        $newpevn                       = new Event($app, '', 'transfer');
+                        $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
+                        $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
+                        $newpevn->pevn['PEVN_DATE']    = $dateEnd;
+                        $newpevn->setTransferUnit($unit2);
+                        $newpevn->save();
+                        break;
                         case 'completion':
-                            unset($newpevn);
-                            $newpevn                       = new Event($app, '', 'completion');
-                            $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
-                            $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
-                            $newpevn->pevn['PEVN_DATE']    = $dateEnd;
-                            $newpevn->save();
-                            break;
+                        unset($newpevn);
+                        $newpevn                       = new Event($app, '', 'completion');
+                        $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
+                        $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
+                        $newpevn->pevn['PEVN_DATE']    = $dateEnd;
+                        $newpevn->save();
+                        break;
                         case 'graduation':
-                            unset($newpevn);
-                            $newpevn                       = new Event($app, '', 'graduation');
-                            $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
-                            $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
-                            $newpevn->pevn['PEVN_DATE']    = $dateEnd;
-                            $newpevn->save();
-                            break;
+                        unset($newpevn);
+                        $newpevn                       = new Event($app, '', 'graduation');
+                        $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
+                        $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
+                        $newpevn->pevn['PEVN_DATE']    = $dateEnd;
+                        $newpevn->save();
+                        break;
                         case 'transport':
-                            unset($newpevn);
-                            $newpevn                       = new Event($app, '', 'transport');
-                            $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
-                            $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
-                            $newpevn->pevn['PEVN_DATE']    = $dateEnd;
-                            $newpevn->save();
-                            break;
+                        unset($newpevn);
+                        $newpevn                       = new Event($app, '', 'transport');
+                        $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
+                        $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
+                        $newpevn->pevn['PEVN_DATE']    = $dateEnd;
+                        $newpevn->save();
+                        break;
                         case 'release':
-                            unset($newpevn);
-                            $newpevn                       = new Event($app, '', 'release');
-                            $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
-                            $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
-                            $newpevn->pevn['PEVN_DATE']    = $dateEnd;
-                            $newpevn->save();
-                            break;
+                        unset($newpevn);
+                        $newpevn                       = new Event($app, '', 'release');
+                        $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
+                        $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
+                        $newpevn->pevn['PEVN_DATE']    = $dateEnd;
+                        $newpevn->save();
+                        break;
 
                         default:
                             # code...
-                            break;
+                        break;
                     }
                 }
             }
@@ -189,6 +192,16 @@ function curatePersons($file, $fakelos, $extended = false)
             $pers->save();
             unset($pers);
         }
+    }
+    fclose($fp) || die("can not close file");
+}
+
+
+function createEvent($file,$fakelos,$offset,$eventType) {
+    global $app, $config;
+    ($fp = fopen("kethea_migr/{$file}.csv", 'r')) || die('problem');
+    while ($csv_line = fgetcsv($fp, 1024, ';'))
+    {
     }
     fclose($fp) || die("can not close file");
 }

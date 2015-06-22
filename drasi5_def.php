@@ -1,8 +1,8 @@
 <?php
 $fakelos = 2;
 
-$sk = 54;
-$ther = 55;
+$sk = 56;
+$ther = 57;
 $ther2 = 59;
 $epan = 60;
 
@@ -22,6 +22,7 @@ $procArr[] = array(
     "event"=>array(
         "Διακοπή" => "withdrawal", 
         "Παραπομπή εντός ΚΕΘΕΑ"=>"transfer", 
+        "Ολοκλήρωση" => "transfer", 
         "Παραπομπή εντός ΚΕΘΕΑ1"=>"witdoutin",
         "Αποφυλάκιση" => "release",
         "Μεταγωγή" => "transport",
@@ -35,6 +36,7 @@ $procArr[] = array(
         "Διακοπή" => "withdrawal", 
         "Ολοκλήρωση" => "transfer", 
         "Παραπομπή εντός ΚΕΘΕΑ"=>"witdoutin",
+        "Παραπομπή εντός ΚΕΘΕΑ1"=>"witdoutin",
         "Αποφυλάκιση" => "release",
         "Μεταγωγή" => "transport",
         "" => "open",
@@ -48,5 +50,6 @@ $procArr[] = array(
         "Διακοπή" => "withdrawal", 
         "Παραπομπή εκτός ΚΕΘΕΑ"=>"witdoutout",
          "Παραπομπή εντός ΚΕΘΕΑ"=>"witdoutin",
+         "Παραπομπή εντός ΚΕΘΕΑ1"=>"witdoutin",
         "" => "open",
      ));
