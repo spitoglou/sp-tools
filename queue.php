@@ -17,7 +17,7 @@ foreach ($queue as $value) {
     print_r($value);
     switch ($value[0]) {
         case 'deleteUnit':
-        $unitToDelete=new Unit($value[1]);
+        $unitToDelete=new Unit($app,$value[1]);
         echo "Deletion ";
         $retVal = ($unitToDelete->deleteUnit()) ? "Succesful" : "Failed" ;
         echo "{$retVal}<br>";
