@@ -39,7 +39,6 @@ abstract class Base
             $this->di->logger->debug($sql.' / '.$this->di->db->last_error, 'Query Error');
         }
 
-        // $this->di->logger->debug($result, 'Result');
         return $result;
     }
 

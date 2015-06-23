@@ -61,7 +61,6 @@ class History extends Base
 
     public function save()
     {
-        //print_r($this->pehi);
         switch ($this->saveMode)
         {
             case 'update':
@@ -88,7 +87,6 @@ class History extends Base
                 $sql.="1,";
                 $sql.="SYSDATE";
                 $sql.=")";
-                //$this->di->logger->debug($sql,"PEHI INSERT QUERY");
                 $this->executeStatement($sql);
                 break;
 

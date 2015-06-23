@@ -35,28 +35,3 @@ $procArr[] = array(
         "ΜΕΤΑΓΩΓΗ" => "transport",
         "" => "open",
     ));
-/*$procArr[] = array(
-    "offset"=>18, 
-    "unit1"=>$ther2, 
-    "unit2"=>$epan, 
-    "event"=>array(
-        "ΔΙΑΚΟΠΗ" => "withdrawal", 
-        "ΟΛΟΚΛΗΡΩΣΗ" => "transfer", 
-        "Παραπομπή εντός ΚΕΘΕΑ"=>"witdoutin",
-        "Παραπομπή εντός ΚΕΘΕΑ1"=>"witdoutin",
-        "ΑΠΟΦΥΛΑΚΙΣΗ" => "release",
-        "ΜΕΤΑΓΩΓΗ" => "transport",
-        "" => "open",
-    ));
-$procArr[] = array(
-    "offset"=>22, 
-    "unit1"=>$epan, 
-    "unit2"=>$epan, 
-    "event"=>array(
-        "ΟΛΟΚΛΗΡΩΣΗ" => "completion", 
-        "ΔΙΑΚΟΠΗ" => "withdrawal", 
-        "Παραπομπή εκτός ΚΕΘΕΑ"=>"witdoutout",
-         "Παραπομπή εντός ΚΕΘΕΑ"=>"witdoutin",
-         "Παραπομπή εντός ΚΕΘΕΑ1"=>"witdoutin",
-        "" => "open",
-     ));*/
