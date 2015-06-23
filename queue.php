@@ -4,6 +4,9 @@ $queue=array();
 //$queue[]=array('deleteUnit',UNIT_ID);
 //($queue[]=array('insertUser','username','salt','FullName','unit1|unit2|...','1 : admin')
 
+$queue[]=array('deleteUnit',205);
+$queue[]=array('deleteUnit',206);
+$queue[]=array('deleteUnit',207);
 
 echo '<pre>';
 foreach ($queue as $value) {
@@ -11,7 +14,7 @@ foreach ($queue as $value) {
     print_r($value);
     switch ($value[0]) {
         case 'deleteUnit':
-        $unitToDelete=new Unit($value[1]);
+        $unitToDelete=new Unit($app,$value[1]);
         echo "Deletion ";
         $retVal = ($unitToDelete->deleteUnit()) ? "Succesful" : "Failed" ;
         echo "{$retVal}<br>";
