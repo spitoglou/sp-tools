@@ -1,4 +1,5 @@
 <?php
+
 //db conn
 switch ($config['dbtype'])
 {
@@ -17,7 +18,7 @@ switch ($config['dbtype'])
         break;
     case 'stub':
         //stub connection
-        $db = new DbStub($app);
+        $db = new Sptools\DbStub($app);
         break;
 }
 

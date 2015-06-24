@@ -3,7 +3,7 @@
      * Person Class File
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
-
+namespace Sptools;
 /**
  * Class Person
  * Implements person Objects

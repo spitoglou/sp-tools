@@ -3,7 +3,7 @@
      * event class
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
-
+namespace Sptools;
 /**
  * Event Class
  */

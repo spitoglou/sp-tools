@@ -12,27 +12,43 @@ $handler->getConnector()->getDebugDispatcher()->detectTraceAndSource = true;
 
 $handler->start();
 
-// custom class dir
-define('CLASS_DIR', 'classes/');
-set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
 spl_autoload_register(function ($class)
 {
-    require str_replace("\\", PATH_SEPARATOR, $class).'.class.php';
+    // project-specific namespace prefix
+    $prefix = '';
+    // base directory for the namespace prefix
+    $base_dir = __DIR__ . '/classes/';
+    // does the class use the namespace prefix?
+    $len = strlen($prefix);
+    if (strncmp($prefix, $class, $len) !== 0) {
+        // no, move to the next registered autoloader
+        return;
+    }
+    // get the relative class name
+    $relative_class = substr($class, $len);
+    // replace the namespace prefix with the base directory, replace namespace
+    // separators with directory separators in the relative class name, append
+    // with .php
+    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.class.php';
+    // if the file exists, require it
+    if (file_exists($file)) {
+        require $file;
+    }
 });
 
 //dependencies init
-$app         = new Di();
+$app         = new Sptools\Di();
 $app->logger = $handler;
 
 //config
-$config['dbtype']    = 'orcl';
+$config['dbtype']    = 'stub';
 $config['my_dbuser'] = 'root';
 $config['my_dbpass'] = '';
 $config['dbhost']    = 'localhost';
 $config['database']  = 'socservice';
 $config['service']   = '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.84)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))';
-$config['schema']    = 'FE_TEST';
 $config['schema']    = 'FE_PROD';
+$config['schema']    = 'FE_TEST';
 $config['or_dbuser'] = 'CS';
 $config['or_dbpass'] = 'CS';
 

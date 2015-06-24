@@ -3,7 +3,7 @@
      * person history class
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
-
+namespace Sptools;
 /**
  * History Class
  */

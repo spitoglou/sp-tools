@@ -1,4 +1,7 @@
 <?php
+use Sptools\Person;
+use Sptools\History;
+use Sptools\Event;
 
 /**
  * main migration process function

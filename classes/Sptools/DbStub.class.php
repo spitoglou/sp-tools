@@ -1,5 +1,5 @@
 <?php
-
+namespace Sptools;
 /**
  * class DbStub
  * Provide a stub database class for test purposes

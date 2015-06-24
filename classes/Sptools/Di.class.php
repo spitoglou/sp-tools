@@ -1,5 +1,7 @@
 <?php
 
+namespace Sptools;
+
 /**
  * class Di
  * Dependency Injections

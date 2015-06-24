@@ -1,5 +1,5 @@
 <?php
-
+namespace Sptools;
 /**
  * BaseClass
  */

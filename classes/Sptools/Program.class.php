@@ -3,7 +3,7 @@
      * program class
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
-
+namespace Sptools;
 /**
  * Program Class
  */

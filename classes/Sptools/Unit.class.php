@@ -3,6 +3,7 @@
      * unit class file
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
+namespace Sptools;
 
 /**
  * History Class

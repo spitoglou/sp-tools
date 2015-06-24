@@ -8,7 +8,7 @@ class PersonLoadTest extends UnitTestCase
     function testPersonLoad()
     {
         global $app;
-        $pers= new Person($app,3427);
+        $pers= new Sptools\Person($app,3427);
         $this->assertEqual($pers->data['PERS_ID'],3427);
     }
 }

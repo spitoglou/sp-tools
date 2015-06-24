@@ -15,6 +15,7 @@ $extended = false;
 // $file  = 'diavasi1';
 // $file  = 'diavasi2';
 // $file  = 'exelixis3';
+$file  = 'test';
 
 require_once $file.'_def.php';
 
