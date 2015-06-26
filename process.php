@@ -195,7 +195,7 @@ function curatePersons($file, $fakelos, $extended = false)
             $pers->save();
             unset($pers);
         }
-    }
+    } //while (csv parse loop)
     fclose($fp) || die("can not close file");
 }
 
@@ -206,5 +206,48 @@ function createEvent($file,$fakelos,$offset,$eventType) {
     while ($csv_line = fgetcsv($fp, 1024, ';'))
     {
     }
+    fclose($fp) || die("can not close file");
+}
+
+function updatePersonExtended($file,$fakelos,$force=false) {
+    global $app, $config;
+    ($fp = fopen("kethea_migr/{$file}.csv", 'r')) || die('problem');
+    while ($csv_line = fgetcsv($fp, 1024, ';'))
+    {
+        set_time_limit(60);
+        $line = implode('|', $csv_line);
+
+        $pers = new Person($app);
+        if ($pers->loadFromFile($csv_line[$fakelos]))
+        {
+            $changeDetected=false;
+            $changeLog='';
+            $changeFields=array();
+            $fields=array(6=>'PERS_BIRTH_DATE',7=>'PERS_FATHER_NAME',8=>'PERS_MOTHER_NAME');
+            foreach ($fields as $key=>$value) {
+                $dbValue=$pers->data[$value];
+                $csvValue=$csv_line[$key];
+                if ( $dbValue!= $csvValue) {
+                    $changeDetected=true;
+                    $changeLog.="{$value}: Database = {$dbValue} / File = {$csvValue}<br>";
+                    // if ($dbValue && $dbValue!='1/1/1900' && !strpos($dbValue,'--') && !$force) {
+                    if (!$csvValue) {
+                        $changeLog.='Change cancelled<br>';
+                    } else {
+                        $changeLog.='Change on the way<br>';
+                        $pers->data[$value]=$csvValue;
+                        $changeFields[]=$value;
+                    }
+
+                }
+            }
+            echo $changeLog;
+            $pers->save($changeFields);    
+            
+
+        } else {
+            echo "Person not found in line {$line}<br>";
+        }
+    } //while (csv parse loop)
     fclose($fp) || die("can not close file");
 }

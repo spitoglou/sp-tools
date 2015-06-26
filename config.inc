@@ -2,6 +2,7 @@
 
 // initialization
 $_SESSION['DefaultDateFormat'] = 'd/m/Y';
+mb_internal_encoding("UTF-8");
 require_once "vendor/autoload.php";
 require_once "vendor/custom/DateFunctions.inc";
 require_once "vendor/custom/php-console-master/src/PhpConsole/__autoload.php";

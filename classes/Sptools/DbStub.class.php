@@ -22,7 +22,7 @@ class DbStub
     public function __call($name, $arguments)
     {
         // Note: value of $name is case sensitive.
-        $this->di->logger->debug("Calling object method '$name' ".implode(', ', $arguments));
+        //$this->di->logger->debug("Calling object method '$name' ".implode(', ', $arguments));
         switch ($name)
         {
             case 'query':
@@ -42,6 +42,6 @@ class DbStub
     public static function __callStatic($name, $arguments)
     {
         // Note: value of $name is case sensitive.
-        echo "Calling static method '$name' ".implode(', ', $arguments)."\n";
+        //echo "Calling static method '$name' ".implode(', ', $arguments)."\n";
     }
 }

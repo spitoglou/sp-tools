@@ -31,10 +31,10 @@ abstract class Base
             $result = $this->di->db->get_results($sql, ARRAY_A);
             if (!$result)
             {
-                throw new Exception($this->di->db->last_error, 1);
+                throw new \Exception($this->di->db->last_error, 1);
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             $this->di->logger->debug($sql.' / '.$this->di->db->last_error, 'Query Error');
         }
@@ -54,10 +54,10 @@ abstract class Base
             $result = $this->di->db->query($sql);
             if (!$result)
             {
-                throw new Exception($this->di->db->last_error, 1);
+                throw new \Exception($this->di->db->last_error, 1);
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             $this->di->logger->debug($sql.' / '.$this->di->db->last_error, 'Statement Error');
         }
