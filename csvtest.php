@@ -7,7 +7,9 @@ $extended = false;
 $file  = 'ithaki8';
 
 if ($_GET[update]) {
+
     updatePersonExtended($file,2);
+    
 } else {
     require_once $file.'_def.php';
 

@@ -7,18 +7,6 @@ $epan = 85;
 $fu = 229;
 
 $procArr = array();
-/*$procArr[] = array(
-    "offset"=>7, 
-    "unit1"=>$sk, 
-    "unit2"=>$ther, 
-    "event"=>array(
-        "ΟΛΟΚΛΗΡΩΣΗ" => "transfer",
-        "ΔΙΑΚΟΠΗ" => "withdrawal", 
-        "ΠΑΡΑΠΟΜΠΗ ΕΝΤΟΣ ΚΕΘΕΑ" => "witdoutin", 
-        "Παραπομπή" => "witdoutout", 
-        "Ολοκλήρωση1" => "completion", 
-        "" => "open",
-    ));*/
 $procArr[] = array(
     "offset"=>7, 
     "unit1"=>$ther, 
