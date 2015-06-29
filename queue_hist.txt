@@ -88,3 +88,23 @@ $queue[]=array('insertUser','kpsoma','6220','ΚΑΤΕΡΙΝΑ ΨΩΜΑ','91,92,9
 $queue[]=array('insertUser','okatsiokali','3007','ΟΛΓΑ ΚΑΤΣΙΩΚΑΛΗ','85',0);
 $queue[]=array('insertUser','atortopidou','8443','ΑΝΝΑ ΤΟΡΤΟΠΙΔΟΥ','85',0);
 $queue[]=array('insertUser','xristosmantz','5119','ΧΡΗΣΤΟΣ ΜΑΝΤΖΙΟΥΝΗΣ','85',0);
+
+Χρήστες ΠΡΟΜΗΘΕΑΣ
+$queue[]=array('insertUser','xvettas','4532','ΧΡΗΣΤΟΣ ΒΕΤΤΑΣ','143,144,145,146,147,148,149,150,152,153,240',0);
+$queue[]=array('insertUser','skolouda','5598','ΣΟΦΙΑ ΚΟΛΟΥΔΑ','143,144,145,146,147,148,149,150,152,153,240',0);
+$queue[]=array('insertUser','mtheoxar','7801','ΜΑΡΙΑ ΘΕΟΧΑΡΑΚΗ','143,144,145,146,147,152',0);
+$queue[]=array('insertUser','valbona','3308','ΜΠΕΙΜΠΙ ΒΑΛΜΠΟΝΑ','143,144,145,146,147',0);
+$queue[]=array('insertUser','ivatousi','7016','ΗΡΩ ΒΑΤΟΥΣΗ','143,144,145,146,147',0);
+$queue[]=array('insertUser','vasdemitz','9044','ΒΑΣΙΛΙΚΗ ΔΕΜΙΤΖΟΓΛΟΥ','143,144,145,146,147',0);
+$queue[]=array('insertUser','sgioftsali','2554','ΣΤΕΛΛΑ ΓΙΟΦΤΣΑΛΗ','143,144,145,146,147,153',0);
+$queue[]=array('insertUser','mkomesidou','3337','ΜΑΡΘΑ ΚΟΜΕΣΙΔΟΥ','148,149,150,152',0);
+$queue[]=array('insertUser','mbalamou','9961','ΜΑΡΙΑ ΜΠΑΛΑΜΟΥ','148,149,150',0);
+$queue[]=array('insertUser','gbadinas','1980','ΓΙΩΡΓΟΣ ΜΠΑΝΤΙΝΑΣ','148,149,150',0);
+$queue[]=array('insertUser','xrisdouka','3607','ΧΡΙΣΤΙΝΑ ΔΟΥΚΑ','148,149,150',0);
+$queue[]=array('insertUser','aikpapadim','7005','ΑΙΚΑΤΕΡΙΝΗ ΠΑΠΑΔΗΜΗΤΡΙΟΥ','153',0);
+$queue[]=array('insertUser','mbelefer','9401','ΜΑΡΚΟΣ ΜΠΕΛΕΦΕΡΗΣ','153',0);
+$queue[]=array('insertUser','spantazi','3220','ΣΤΕΛΛΑ ΠΑΝΤΑΖΗ','153',0);
+$queue[]=array('insertUser','mkesekidis','9630','ΜΙΧΑΛΗΣ ΚΕΣΕΚΙΔΗΣ','153',0);
+$queue[]=array('insertUser','ghatitaki','7419','ΓΙΟΥΛΗ ΧΑΡΙΤΑΚΗ','153',0);
+$queue[]=array('insertUser','mtsibidou','8052','ΜΑΡΙΑ ΤΣΙΜΠΙΔΟΥ','153',0);
+$queue[]=array('insertUser','xstamkop','6340','ΧΑΡΗΣ ΣΤΑΜΚΟΠΟΥΛΟΣ','153',0);
