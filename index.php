@@ -23,6 +23,11 @@ switch ($route) {
     case 'queue':
         require "src/fe/queue.php";
     break;
+
+    case 'test':
+        require "src/test/test.php";
+    break;
+
     default:
         echo "No valid route selected";
     break;

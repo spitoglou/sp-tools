@@ -4,15 +4,6 @@
      *  @version 0.1 Initial Tests
      */
 
-// initialization
-require_once "vendor/custom/php-console-master/src/PhpConsole/__autoload.php";
-
-$handler = PhpConsole\Handler::getInstance();
-$handler->getConnector()->setSourcesBasePath($_SERVER['DOCUMENT_ROOT']);
-$handler->getConnector()->getDebugDispatcher()->detectTraceAndSource = true;
-
-$handler->start();
-
 // plain debug
 $handler->debug('test debug');
 
