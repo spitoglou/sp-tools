@@ -1,8 +1,10 @@
 <?php
+
 namespace Sptools;
+
 /**
  * class DbStub
- * Provide a stub database class for test purposes
+ * Provide a stub database class for test purposes.
  */
 class DbStub
 {
@@ -14,17 +16,18 @@ class DbStub
     }
 
     /**
-     * magic function __call
-     * @param  string $name      [description]
-     * @param  string $arguments [description]
-     * @return mixed            [description]
+     * magic function __call.
+     *
+     * @param string $name      [description]
+     * @param string $arguments [description]
+     *
+     * @return mixed [description]
      */
     public function __call($name, $arguments)
     {
         // Note: value of $name is case sensitive.
         $this->di->logger->debug("Calling object method '$name' ".implode(', ', $arguments));
-        switch ($name)
-        {
+        switch ($name) {
             case 'query':
                 return true;
                 break;
