@@ -1,6 +1,6 @@
 <?php
 
-require_once "config.inc";
+require_once "config/config.inc";
 require_once "vendor/simpletest/simpletest/autorun.php";
 
 class PersonLoadTest extends UnitTestCase

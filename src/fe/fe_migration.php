@@ -1,10 +1,10 @@
 <?php
 
-require_once "process.php";
+require_once "src/fe/process.php";
 
 $final = true;
 $extended = false;
-$file  = 'ithaki8';
+$file  = 'test';
 
 if ($_GET[update]) {
 

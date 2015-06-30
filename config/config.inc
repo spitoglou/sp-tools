@@ -18,7 +18,7 @@ spl_autoload_register(function ($class)
     // project-specific namespace prefix
     $prefix = '';
     // base directory for the namespace prefix
-    $base_dir = __DIR__ . '/classes/';
+    $base_dir = 'classes/';
     // does the class use the namespace prefix?
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {
@@ -42,7 +42,7 @@ $app         = new Sptools\Di();
 $app->logger = $handler;
 
 //config
-$config['dbtype']    = 'stub';
+$config['dbtype']    = 'orcl';
 $config['my_dbuser'] = 'root';
 $config['my_dbpass'] = '';
 $config['dbhost']    = 'localhost';

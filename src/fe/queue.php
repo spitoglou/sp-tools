@@ -8,7 +8,6 @@
     * @author Stavros Pitoglou <spitoglou@gmail.com> 
     */
 
-require_once 'config.inc';
 $queue=array();
 
 
@@ -62,3 +61,4 @@ foreach ($queue as $value) {
         break;
     }
 }
+echo '<br> End of queue script';
