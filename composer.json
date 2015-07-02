@@ -3,7 +3,7 @@
         "jv2222/ezsql": "dev-master",
         "league/csv": "^7.1",
         "nesbot/carbon": "^1.19",
-        "simpletest/simpletest": "^1.1",
-        "raveren/kint": "^1.0"
+        "raveren/kint": "^1.0",
+        "phpunit/phpunit": "4.7.*"
     }
 }

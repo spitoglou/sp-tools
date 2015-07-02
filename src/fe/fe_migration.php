@@ -4,7 +4,7 @@ require_once "src/fe/process.php";
 
 $final = true;
 $extended = false;
-$file  = 'test';
+$file  = 'exodos12';
 
 if ($_GET[update]) {
 
