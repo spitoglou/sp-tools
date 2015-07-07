@@ -4,7 +4,7 @@ require_once "src/fe/process.php";
 
 $final = true;
 $extended = false;
-$file  = 'exodos12';
+$file  = 'pilotos1';
 
 if ($_GET[update]) {
 
@@ -15,8 +15,11 @@ if ($_GET[update]) {
 
     curatePersons($file, $fakelos, $extended);
 
+    ob_start();
     foreach ($procArr as $value)
     {
         processFile($file, $fakelos, $value['offset'], $value['unit1'], $value['unit2'], $value['event']);
+        ob_flush();
     }
+    ob_end_clean();
 }

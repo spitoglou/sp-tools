@@ -26,7 +26,7 @@ class DbStub
     public function __call($name, $arguments)
     {
         // Note: value of $name is case sensitive.
-        $this->di->logger->debug("Calling object method '$name' ".implode(', ', $arguments));
+        //$this->di->logger->debug("Calling object method '$name' ".implode(', ', $arguments));
         switch ($name) {
             case 'query':
                 return true;
