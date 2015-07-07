@@ -1,2 +1,0 @@
-<?php
-$fakelos = 2;
