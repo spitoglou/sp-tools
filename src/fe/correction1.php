@@ -11,8 +11,7 @@ $sql    = "SELECT * FROM FE_PROD.FE_PERSON_EVENTS where PEVN_COMMENTS like '%Α�
 $sql    = "SELECT * FROM FE_PROD.FE_PERSON_EVENTS where PEVN_COMMENTS like '%Μεταγωγής'";
 $result = $db->get_results($sql, ARRAY_A);
 
-foreach ($result as $key => $value)
-{
+foreach ($result as $key => $value) {
     $sql = "INSERT INTO FE_PROD.FE_TRANSPORTS (";
     $sql .= "TRAP_ID,";
     $sql .= "TRAP_PEVN_ID,";

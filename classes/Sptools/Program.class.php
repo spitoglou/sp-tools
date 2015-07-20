@@ -4,6 +4,7 @@
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
 namespace Sptools;
+
 /**
  * Program Class
  */
@@ -14,8 +15,7 @@ class Program extends Base
     public function __construct($di, $id = '')
     {
         parent::__construct($di);
-        if ($id)
-        {
+        if ($id) {
             $this->prog['PROG_ID'] = $id;
             $this->loadAttrs($id);
             $this->saveMode = 'update';

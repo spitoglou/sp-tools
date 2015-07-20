@@ -4,6 +4,7 @@
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
 namespace Sptools;
+
 /**
  * Class Person
  * Implements person Objects
@@ -42,8 +43,7 @@ class Person extends Base
     public function __construct($di, $id = '')
     {
         parent::__construct($di);
-        if ($id)
-        {
+        if ($id) {
             $this->idNr = $id;
             $this->loadPersonAttrs($id);
             $this->saveMode = 'update';
@@ -75,12 +75,12 @@ class Person extends Base
      * Save operations for Person object
      * @return void
      */
-    public function save($changefields=array())
+    public function save($changefields = array())
     {
         switch ($this->saveMode)
         {
             case 'insert':
-            $sql = "INSERT INTO {$this->schema}.FE_PERSONS (";
+                $sql = "INSERT INTO {$this->schema}.FE_PERSONS (";
                 $sql .= "PERS_ID,";
                 $sql .= "PERS_CODE,";
                 $sql .= "PERS_KETHEA_CODE,";
@@ -111,54 +111,53 @@ class Person extends Base
                 $sql .= "SYSDATE";
                 $sql .= ")";
                 //$this->di->logger->debug($sql,"PERS INSERT QUERY");
-$this->executeStatement($sql);
+                $this->executeStatement($sql);
 
-$sql = "INSERT INTO {$this->schema}.FE_PHYSICAL_FILES (";
-    $sql .= "PHYS_ID,";
-    $sql .= "PHYS_CODE,";
-    $sql .= "PHYS_PERS_ID,";
-    $sql .= "PHYS_DISPLAY_CODE,";
-    $sql .= "USER_CREATE,";
-    $sql .= "DATE_CREATE";
-    $sql .= ") VALUES (";
-    $sql .= "{$this->schema}.SEQ_FE_PHYSICAL_FILES_PHYS_ID.NEXTVAL,";
-    $code = explode('-', $this->data['PERS_CODE'])[1];
-    if (!$code) {
-        $code=$this->data['PERS_CODE'];
-    }
-    $sql .= "'{$code}',";
-    $sql .= "{$this->schema}.SEQ_FE_PERSONS_PERS_ID.CURRVAL,";
-    $sql .= "'{$this->data['PERS_CODE']}',";
-    $sql .= "1,";
-    $sql .= "SYSDATE";
-    $sql .= ")";
-$this->executeStatement($sql);
-break;
+                $sql = "INSERT INTO {$this->schema}.FE_PHYSICAL_FILES (";
+                $sql .= "PHYS_ID,";
+                $sql .= "PHYS_CODE,";
+                $sql .= "PHYS_PERS_ID,";
+                $sql .= "PHYS_DISPLAY_CODE,";
+                $sql .= "USER_CREATE,";
+                $sql .= "DATE_CREATE";
+                $sql .= ") VALUES (";
+                $sql .= "{$this->schema}.SEQ_FE_PHYSICAL_FILES_PHYS_ID.NEXTVAL,";
+                $code = explode('-', $this->data['PERS_CODE'])[1];
+                if (!$code) {
+                    $code=$this->data['PERS_CODE'];
+                }
+                $sql .= "'{$code}',";
+                $sql .= "{$this->schema}.SEQ_FE_PERSONS_PERS_ID.CURRVAL,";
+                $sql .= "'{$this->data['PERS_CODE']}',";
+                $sql .= "1,";
+                $sql .= "SYSDATE";
+                $sql .= ")";
+                $this->executeStatement($sql);
+                break;
 
-case 'update':
-$sql = "UPDATE {$this->schema}.FE_PERSONS SET ";
-$change=array();
-foreach ($changefields as $value) {
-    if (strpos($value,'DATE')!=false) {
-        $dateVal=$this->formatDateForSQL($this->data[$value]);
-        $change[] = "{$value} = {$dateVal}";
+            case 'update':
+                $sql = "UPDATE {$this->schema}.FE_PERSONS SET ";
+                $change=array();
+                foreach ($changefields as $value) {
+                    if (strpos($value, 'DATE')!=false) {
+                        $dateVal=$this->formatDateForSQL($this->data[$value]);
+                        $change[] = "{$value} = {$dateVal}";
 
-    } else {
+                    } else {
+                        $change[] = "{$value} = '{$this->data[$value]}'";
+                    }
+                }
+                $sql.= implode(',', $change);
 
-        $change[] = "{$value} = '{$this->data[$value]}'";
-    }
-}
-$sql.= implode(',',$change);
+                $sql.= " WHERE PERS_ID={$this->data['PERS_ID']}";
+                $this->executeStatement($sql);
+                break;
 
-$sql.= " WHERE PERS_ID={$this->data['PERS_ID']}";
-$this->executeStatement($sql);
-break;
-
-default:
+            default:
                 # code...
-break;
-}
-}
+                break;
+        }
+    }
 
     /**
      * calculates kethea 9-digit code
@@ -182,8 +181,7 @@ break;
         $result = 0;
         $sql    = "SELECT a.PERS_ID FROM {$this->schema}.FE_PERSONS a, {$this->schema}.FE_PHYSICAL_FILES b WHERE a.pers_id=b.phys_pers_id  and b.phys_display_code = '{$value}'";
         $res    = $this->executeQuery($sql);
-        if ($res)
-        {
+        if ($res) {
             $result = 1;
             $this->loadPersonAttrs($res[0]['PERS_ID']);
             $this->saveMode = 'update';

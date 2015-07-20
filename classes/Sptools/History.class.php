@@ -4,6 +4,7 @@
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
 namespace Sptools;
+
 /**
  * History Class
  */
@@ -16,8 +17,7 @@ class History extends Base
     function __construct($di, $id = '')
     {
         parent::__construct($di);
-        if ($id)
-        {
+        if ($id) {
             $this->pehi['PEHI_ID'] = $id;
             $this->loadAttrs($id);
             $this->saveMode = 'update';

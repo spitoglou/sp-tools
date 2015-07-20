@@ -4,6 +4,7 @@
      * @author Stavros Pitoglou <s.pitoglou@csl.gr>
      */
 namespace Sptools;
+
 /**
  * Event Class
  */
@@ -31,8 +32,7 @@ class Event extends Base
     {
         parent::__construct($di);
         $this->type = $type;
-        if ($id)
-        {
+        if ($id) {
             $this->pevn['PEVN_ID'] = $id;
             $this->loadAttrs($id);
             $this->saveMode = 'update';
@@ -125,8 +125,7 @@ class Event extends Base
                 $sql .= "SYSDATE";
                 $sql .= ")";
                 $this->executeStatement($sql);
-                if ($this->type == 'assignment')
-                {
+                if ($this->type == 'assignment') {
                     $sql = "INSERT INTO {$this->schema}.FE_ASSIGNMENTS (";
                     $sql .= "ASSI_ID,";
                     $sql .= "ASSI_PEVN_ID,";
@@ -143,9 +142,7 @@ class Event extends Base
                     $sql .= "0";
                     $sql .= ")";
                     $this->executeStatement($sql);
-                }
-                elseif (in_array($this->type, array('withdrawal', 'witdoutin', 'witdoutout')))
-                {
+                } elseif (in_array($this->type, array('withdrawal', 'witdoutin', 'witdoutout'))) {
                     $sql = "INSERT INTO {$this->schema}.FE_WITHDRAWALS (";
                     $sql .= "WITD_ID,";
                     $sql .= "WITD_PEVN_ID,";
@@ -159,16 +156,16 @@ class Event extends Base
                     $sql .= "{$this->schema}.SEQ_FE_WITHDRAWALS_WITD_ID.NEXTVAL,";
                     $sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
                     switch ($this->type)
-        {
+                    {
                         case 'withdrawal':
                                 $sql .= "1,NULL,";
-                                break;
+                            break;
                         case 'witdoutin':
                                 $sql .= "2,0,";
-                                break;
+                            break;
                         case 'witdoutout':
                                 $sql .= "2,1,";
-                                break;
+                            break;
                     }
                     $sql .= "7,";
                     $sql .= "1,";
@@ -176,9 +173,7 @@ class Event extends Base
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
                     $sql .= ")";
                     $this->executeStatement($sql);
-                }
-                elseif ($this->type == 'transfer')
-                {
+                } elseif ($this->type == 'transfer') {
                     $sql = "INSERT INTO {$this->schema}.FE_TRANSFERS (";
                     $sql .= "TRAN_ID,";
                     $sql .= "TRAN_PEVN_ID,";
@@ -201,22 +196,14 @@ class Event extends Base
                     $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
                     $sql .= ")";
                     $this->executeStatement($sql);
-                }
-                elseif ($this->type == 'completion')
-    {
+                } elseif ($this->type == 'completion') {
                     $this->insPlainEvent('FE_COMPLETIONS', 'SEQ_FE_COMPLETIONS_COML_ID', 'COML');
-                }
-                elseif ($this->type == 'graduation')
-    {
+                } elseif ($this->type == 'graduation') {
                     $this->insPlainEvent('FE_GRADUATIONS', 'SEQ_FE_GRADUATIONS_GRAD_ID', 'GRAD');
-                }
-                elseif ($this->type == 'transport')
-    {
+                } elseif ($this->type == 'transport') {
                     $this->insPlainEvent('FE_TRANSPORTS', 'SEQ_FE_TRANSPORTS_TRAP_ID', 'TRAP');
 
-                }
-                elseif ($this->type == 'release')
-    {
+                } elseif ($this->type == 'release') {
                     $this->insPlainEvent('FE_RELEASES', 'SEQ_FE_RELEASES_RELE_ID', 'RELE');
                 }
                 break;
@@ -243,40 +230,23 @@ class Event extends Base
     private function makeComments()
     {
         $history = new History($this->di, $this->pevn['PEVN_PEHI_ID']);
-        if ($this->type == 'assignment')
-        {
+        if ($this->type == 'assignment') {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ανατέθηκε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
-        }
-        elseif ($this->type == 'withdrawal')
-        {
+        } elseif ($this->type == 'withdrawal') {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από την Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
-        }
-        elseif ($this->type == 'witdoutin')
-        {
+        } elseif ($this->type == 'witdoutin') {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εντός ΚΕΘΕΑ)";
-        }
-        elseif ($this->type == 'witdoutout')
-        {
+        } elseif ($this->type == 'witdoutout') {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε Εκτός Πλαισίου (Εκτός ΚΕΘΕΑ)";
-        }
-        elseif ($this->type == 'transfer')
-        {
+        } elseif ($this->type == 'transfer') {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} παραπέμφθηκε στην Υπηρεσία {$this->transferUnit->program->prog['PROG_NAME']} / {$this->transferUnit->structure->stru['STRU_NAME']} / {$this->transferUnit->unit['UNIT_NAME']}";
-        }
-        elseif ($this->type == 'completion')
-        {
-            return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ολοκλήρωσε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
-        }
-        elseif ($this->type == 'graduation')
-        {
+        } elseif ($this->type == 'completion') {
+        return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} ολοκλήρωσε στην Υπηρεσία {$history->unit->program->prog['PROG_NAME']} / {$history->unit->structure->stru['STRU_NAME']} / {$history->unit->unit['UNIT_NAME']}";
+        } elseif ($this->type == 'graduation') {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποφοίτησε με επιτυχία από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']}";
-        }
-        elseif ($this->type == 'transport')
-        {
+        } elseif ($this->type == 'transport') {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']} λόγω Μεταγωγής";
-        }
-        elseif ($this->type == 'release')
-        {
+        } elseif ($this->type == 'release') {
             return "To Μέλος {$history->person->data['PERS_LAST_NAME']} {$history->person->data['PERS_FIRST_NAME']} αποχώρησε από το πρόγραμμα {$history->unit->program->prog['PROG_NAME']} λόγω Αποφυλάκισης";
         }
         return "PLACEHOLDER COMMENTS";

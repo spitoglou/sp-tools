@@ -17,8 +17,7 @@ class Unit extends Base
     public function __construct($di, $id = '')
     {
         parent::__construct($di);
-        if ($id)
-        {
+        if ($id) {
             $this->unit['UNIT_ID'] = $id;
             $this->loadAttrs($id);
             $this->saveMode = 'update';
@@ -49,10 +48,6 @@ class Unit extends Base
         $this->executeStatement($sql);
         $sql = "DELETE FROM {$this->schema}.FE_UNITS where UNIT_ID={$this->unit['UNIT_ID']}";
         $retVal = ($this->executeStatement($sql)) ? 1 : 0 ;
-        return $retVal;    
+        return $retVal;
     }
-
-
-
 }
-

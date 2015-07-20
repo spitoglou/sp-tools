@@ -1,8 +1,8 @@
 <?php
 /**
- 	* file to test kint debugger
- 	* @author Stavros Pitoglou <spitoglou@gmail.com>	
- 	*/
+    * file to test kint debugger
+    * @author Stavros Pitoglou <spitoglou@gmail.com>
+    */
 
 d($_SERVER);
 d(1);

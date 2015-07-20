@@ -47,7 +47,7 @@ class MyMessage extends POP3Message
         echo '<pre>';
         //print "== Message==\n{$this->message}\n==\n";
         $handler->debug($this->message, 'Raw Message');
-        $mime = new mime_parser_class;
+        $mime = new mime_parser_class();
 
         /*
          * Set to 0 for parsing a single message file
@@ -99,49 +99,37 @@ class MyMessage extends POP3Message
                             /* Do not retrieve or save message body parts */
                             //'SkipBody' => 1,
         );
-        if (!$mime->Decode($parameters, $decoded))
-        {
+        if (!$mime->Decode($parameters, $decoded)) {
             echo 'MIME message decoding error: '.$mime->error.' at position '.$mime->error_position;
             if ($mime->track_lines
-                && $mime->GetPositionLine($mime->error_position, $line, $column))
-            {
+                && $mime->GetPositionLine($mime->error_position, $line, $column)) {
                 echo ' line '.$line.' column '.$column;
             }
 
             echo "\n";
-        }
-        else
-        {
+        } else {
             echo 'MIME message decoding successful.'."\n";
-            echo (count($decoded) == 1 ? '1 message was found.' : count($decoded).' messages were found.'), "\n";
-            for ($message = 0; $message < count($decoded); $message++)
-            {
+            echo(count($decoded) == 1 ? '1 message was found.' : count($decoded).' messages were found.'), "\n";
+            for ($message = 0; $message < count($decoded); $message++) {
                 echo 'Message ', ($message + 1), ':', "\n";
                 #var_dump($decoded[$message]);
                 print_r($decoded[$message]);
                 //$handler->debug($decoded[$message], 'Decoded Message');
-                if ($mime->decode_bodies)
-                {
-                    if ($mime->Analyze($decoded[$message], $results))
-                    {
+                if ($mime->decode_bodies) {
+                    if ($mime->Analyze($decoded[$message], $results)) {
                         #var_dump($results);
                         print_r($results);
                         //$handler->debug($results);
-                    }
-                    else
-                    {
+                    } else {
                         echo 'MIME message analyse error: '.$mime->error."\n";
                     }
-
                 }
             }
-            for ($warning = 0, Reset($mime->warnings); $warning < count($mime->warnings); Next($mime->warnings), $warning++)
-            {
+            for ($warning = 0, Reset($mime->warnings); $warning < count($mime->warnings); Next($mime->warnings), $warning++) {
                 $w = Key($mime->warnings);
                 echo 'Warning: ', $mime->warnings[$w], ' at position ', $w;
                 if ($mime->track_lines
-                    && $mime->GetPositionLine($w, $line, $column))
-                {
+                    && $mime->GetPositionLine($w, $line, $column)) {
                     echo ' line '.$line.' column '.$column;
                 }
 
@@ -151,8 +139,7 @@ class MyMessage extends POP3Message
     }
 }
 // Minimilistic Example
-try
-{
+try {
     $server = new POP3Server('ssl://mantis.cssa.tk', 995, POP_USERNAME, POP_PASSWORD);
     /*
      * The next line:
@@ -164,10 +151,7 @@ try
     $messages = $server->processMessages('MyMessage', false);
     $handler->debug($messages);
     $handler->debug($server->logbuffer, 'LogBuffer');
-
-}
-catch (Exception $e)
-{
+} catch (Exception $e) {
     // Problem!
     $handler->debug($server->logbuffer);
     $handler->handleException($e);

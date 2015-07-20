@@ -48,14 +48,14 @@ class TestObj
      * Set values to object vars
      * @param string
      */
-    public function __construct($value = '')
+    public function __construct()
     {
         $this->var1 = "Σταύρος";
         $this->var2 = "Πιτόγλου";
     }
 }
 
-$instance = new TestObj;
+$instance = new TestObj();
 $handler->debug($instance);
 
 //error handling
