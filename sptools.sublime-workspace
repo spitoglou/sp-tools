@@ -479,6 +479,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "classes/Sptools/Base.class.php",
+			"settings":
+			{
+				"buffer_size": 3159,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -608,12 +616,34 @@
 	[
 		"/C/xampp/htdocs/sp-tools",
 		"/C/xampp/htdocs/sp-tools/classes",
-		"/C/xampp/htdocs/sp-tools/classes/Sptools"
+		"/C/xampp/htdocs/sp-tools/classes/Sptools",
+		"/C/xampp/htdocs/sp-tools/config",
+		"/C/xampp/htdocs/sp-tools/src",
+		"/C/xampp/htdocs/sp-tools/src/fe",
+		"/C/xampp/htdocs/sp-tools/src/test"
 	],
 	"file_history":
 	[
-		"/C/Users/pstavros/AppData/Roaming/Sublime Text 3/Packages/User/phpcs.sublime-settings",
+		"/C/xampp/htdocs/sp-tools/classes/Sptools/DbStub.class.php",
+		"/C/xampp/htdocs/sp-tools/classes/Sptools/Di.class.php",
+		"/C/xampp/htdocs/sp-tools/classes/Sptools/Event.class.php",
+		"/C/Users/pstavros/AppData/Roaming/Sublime Text 3/Packages/User/bh_core.sublime-settings",
+		"/C/xampp/htdocs/sp-tools/classes/Sptools/History.class.php",
+		"/C/Users/pstavros/AppData/Roaming/Sublime Text 3/Packages/BracketHighlighter/bh_core.sublime-settings",
+		"/C/xampp/htdocs/sp-tools/classes/Sptools/Person.class.php",
+		"/C/xampp/htdocs/sp-tools/classes/Sptools/Program.class.php",
+		"/C/xampp/htdocs/sp-tools/classes/Sptools/Structure.class.php",
+		"/C/xampp/htdocs/sp-tools/classes/Sptools/Unit.class.php",
+		"/C/xampp/htdocs/sp-tools/config/config.inc",
 		"/C/xampp/htdocs/sp-tools/index.php",
+		"/C/xampp/htdocs/sp-tools/src/fe/correction1.php",
+		"/C/xampp/htdocs/sp-tools/src/fe/fe_migration.php",
+		"/C/xampp/htdocs/sp-tools/src/fe/process.php",
+		"/C/xampp/htdocs/sp-tools/src/fe/queue.php",
+		"/C/xampp/htdocs/sp-tools/src/test/kintest.php",
+		"/C/xampp/htdocs/sp-tools/src/test/pop3_example.php",
+		"/C/xampp/htdocs/sp-tools/src/test/test.php",
+		"/C/Users/pstavros/AppData/Roaming/Sublime Text 3/Packages/User/phpcs.sublime-settings",
 		"/C/xampp/htdocs/sp-tools/classes/Sptools/Base.class.php",
 		"/C/xampp/htdocs/larga/vendor/nikic/php-parser/lib/PhpParser/Node/Expr/BinaryOp/LogicalOr.php",
 		"/C/Users/pstavros/AppData/Roaming/Sublime Text 3/Packages/Phpcs/phpcs.sublime-settings",
@@ -628,8 +658,6 @@
 		"/C/xampp/htdocs/sp-tools/kethea_migr/exelixisex.csv",
 		"/Y/kethea_data/done/diavasi1_def.php",
 		"/C/xampp/htdocs/sp-tools/src/fe/queue_hist.txt",
-		"/C/xampp/htdocs/sp-tools/src/fe/queue.php",
-		"/C/xampp/htdocs/sp-tools/classes/Sptools/DbStub.class.php",
 		"/C/xampp/htdocs/sp-tools/kethea_migr/done/pilotos1.csv",
 		"/C/xampp/htdocs/sp-tools/kethea_migr/done/pilotos1_def.php",
 		"/C/xampp/htdocs/sp-tools/kethea_migr/pilotos1.csv",
@@ -681,7 +709,6 @@
 		"/C/xampp/htdocs/sp-tools/kethea_migr/done/ithaki6.csv",
 		"/C/xampp/htdocs/sp-tools/dbconn.inc",
 		"/C/xampp/htdocs/sp-tools/ithaki5_def.php",
-		"/C/xampp/htdocs/sp-tools/classes/Sptools/Person.class.php",
 		"/C/xampp/htdocs/sp-tools/kethea_migr/done/ithaki5.csv",
 		"/C/xampp/htdocs/sp-tools/kethea_migr/done/ithaki4.csv",
 		"/C/xampp/htdocs/sp-tools/ithaki4_def.php",
@@ -724,22 +751,7 @@
 		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi21.csv",
 		"/C/xampp/htdocs/sp-tools/drasi21_def.php",
 		"/C/xampp/htdocs/sp-tools/drasi10_def.php",
-		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi10.csv",
-		"/C/xampp/htdocs/sp-tools/drasi9_def.php",
-		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi9.csv",
-		"/C/xampp/htdocs/sp-tools/drasi8_def.php",
-		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi8.csv",
-		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi7.csv",
-		"/C/xampp/htdocs/sp-tools/drasi7_def.php",
-		"/C/xampp/htdocs/sp-tools/drasi6_def.php",
-		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi6.csv",
-		"/C/xampp/htdocs/sp-tools/drasi5_def.php",
-		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi5.csv",
-		"/C/xampp/htdocs/sp-tools/drasi3_def.php",
-		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi3.csv",
-		"/C/xampp/htdocs/sp-tools/drasi2_def.php",
-		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi2.csv",
-		"/C/xampp/htdocs/sp-tools/drasi1_def.php"
+		"/C/xampp/htdocs/sp-tools/kethea_migr/done/drasi10.csv"
 	],
 	"find":
 	{
@@ -913,8 +925,98 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "classes/Sptools/Base.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3159,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1590,
+								1590
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

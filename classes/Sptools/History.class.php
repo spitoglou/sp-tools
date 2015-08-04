@@ -10,7 +10,7 @@ namespace Sptools;
  */
 class History extends Base
 {
-    public $pehi = array();
+    public $pehi = [];
     public $person;
     public $unit;
 
