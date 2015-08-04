@@ -59,6 +59,9 @@ class History extends Base
         $this->person         = new Person($this->di, $value);
     }
 
+    /**
+     * Save Function
+     */
     public function save()
     {
         switch ($this->saveMode)
