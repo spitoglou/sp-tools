@@ -157,7 +157,7 @@ function curatePersons($file, $fakelos, $extended = false)
         if (!$pers->loadFromFile($csv_line[$fakelos])) {
             $pers->data['PERS_LAST_NAME']   = $csv_line[3];
             $pers->data['PERS_FIRST_NAME']  = $csv_line[4];
-            $pers->data['PERS_KETHEA_CODE'] = $csv_line[5];
+            $pers->data['PERS_KETHEA_CODE'] = $csv_line[5] ?: '99';
             $pers->data['PERS_BIRTH_DATE']  = '1/1/1900';
             $pers->data['PERS_FATHER_NAME'] = '----------';
             $pers->data['PERS_MOTHER_NAME'] = '----------';

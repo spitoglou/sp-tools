@@ -4,12 +4,12 @@ require_once "src/fe/process.php";
 
 $final = true;
 $extended = false;
-$file  = 'exelixisex';
+$file = 'diavata';
 
-if ($_GET[update]) {
+if ($_GET['update']) {
     updatePersonExtended($file, 2);
 } else {
-    require_once $file.'_def.php';
+    require_once 'kethea_migr/' . $file . '_def.php';
 
     curatePersons($file, $fakelos, $extended);
 
