@@ -15,9 +15,7 @@ foreach ($queue as $value) {
     echo "Command<br>";
     print_r($value);
     switch ($value[0]) {
-
         case 'deleteUnit':
-
             $unitToDelete = new Sptools\Unit($app, $value[1]);
             echo "Deletion ";
             $retVal = ($unitToDelete->deleteUnit()) ? "Succesful" : "Failed";
@@ -25,7 +23,6 @@ foreach ($queue as $value) {
             break;
 
         case 'insertUser':
-
             $username = $value[1];
             $password = password_hash($value[1] . $value[2], PASSWORD_BCRYPT);
             $names = [];
