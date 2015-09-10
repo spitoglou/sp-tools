@@ -42,15 +42,14 @@ class Event extends Base
 
     /**
      * Fill object from database
-     * @param integer $id event id
+     * @param int|string $id event id
      */
     private function loadAttrs($id = '')
     {
         $sql        = "SELECT * from {$this->schema}.FE_PERSON_EVENTS where PEVN_ID={$id}";
         $result     = $this->executeQuery($sql);
         $this->pevn = $result[0];
-        switch ($this->type)
-        {
+        switch ($this->type) {
             case 'assignment':
                 $sql              = "SELECT * from {$this->schema}.FE_ASSIGNMENTS where ASSI_PEVN_ID={$id}";
                 $result           = $this->executeQuery($sql);
@@ -102,8 +101,7 @@ class Event extends Base
      */
     public function save()
     {
-        switch ($this->saveMode)
-        {
+        switch ($this->saveMode) {
             case 'insert':
                 $sql = "INSERT INTO {$this->schema}.FE_PERSON_EVENTS (";
                 $sql .= "PEVN_ID,";
@@ -155,8 +153,7 @@ class Event extends Base
                     $sql .= ") VALUES (";
                     $sql .= "{$this->schema}.SEQ_FE_WITHDRAWALS_WITD_ID.NEXTVAL,";
                     $sql .= "{$this->schema}.SEQ_FE_PERSON_EVENTS_PEVN_ID.CURRVAL,";
-                    switch ($this->type)
-                    {
+                    switch ($this->type) {
                         case 'withdrawal':
                                 $sql .= "1,NULL,";
                             break;
@@ -215,15 +212,6 @@ class Event extends Base
     }
 
     /**
-     * set destination unit for transfers
-     * @param int $id unit_id
-     */
-    public function setTransferUnit($id)
-    {
-        $this->transferUnit = new Unit($this->di, $id);
-    }
-
-    /**
      * create comment line
      * @return string comment line
      */
@@ -273,5 +261,14 @@ class Event extends Base
         $sql .= $this->formatDateForSQL($this->pevn['PEVN_DATE']);
         $sql .= ")";
         $this->executeStatement($sql);
+    }
+
+    /**
+     * set destination unit for transfers
+     * @param int $id unit_id
+     */
+    public function setTransferUnit($id)
+    {
+        $this->transferUnit = new Unit($this->di, $id);
     }
 }

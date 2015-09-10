@@ -5,15 +5,15 @@ use Sptools\Event;
 
 /**
  * main migration process function
- * @param  string $file    file to be parsed
- * @param  int  $fakelos offset for phys file data location
- * @param  int $offset  offset for the first column to be parsed
- * @param  int $unit1   UNIT_ID
- * @param  int $unit2   UNIT_ID to transer to
- * @param  array $event   array of event conversion table
- * @return void
+ * @param  string $file file to be parsed
+ * @param  int $fakelos offset for phys file data location
+ * @param  int $offset offset for the first column to be parsed
+ * @param  array $event array of event conversion table
+ * @param $units
+ * @internal param int $unit1 UNIT_ID
+ * @internal param int $unit2 UNIT_ID to transer to
  */
-function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
+function processFile($file, $fakelos, $offset, $event, $units)
 {
     global $app, $config;
     $errors = array();
@@ -30,15 +30,30 @@ function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
 
         if ($pers->loadFromFile($csv_line[$fakelos])) {
             if ($dateStart) {
+                $dataOK = true;
                 //check match fot event types
+
                 if (!$event[$csv_line[$offset + 3]]) {
                     $errors[$i] .= '-could not match event|';
-                } else {
+                    $dataOK = false;
+                }
+                //check unit reference
+                $unit1 = $csv_line[$offset];
+                $unit2 = $csv_line[$offset + 4];
+                if (!$units[$unit1]) {
+                    $errors[$i] .= '-could not match first unit|';
+                    $dataOK = false;
+                }
+                if (!$units[$unit2] && ($event[$csv_line[$offset + 3]] == 'transfer')) {
+                    $errors[$i] .= '-could not match second unit|';
+                    $dataOK = false;
+                }
+                if ($dataOK) {
                     //everything OK datawise
 
                     //create person history
                     $newph = new History($app);
-                    $newph->setUnit($unit1);
+                    $newph->setUnit($units[$unit1]);
                     $newph->setPerson($pers->data['PERS_ID']);
                     $newph->pehi['PEHI_START_DATE'] = $dateStart;
                     $newph->pehi['PEHI_END_DATE']   = $dateEnd;
@@ -76,7 +91,7 @@ function processFile($file, $fakelos, $offset, $unit1, $unit2, $event)
                             $newpevn->pevn['PEVN_PERS_ID'] = $pers->data['PERS_ID'];
                             $newpevn->pevn['PEVN_PEHI_ID'] = $pehi_id;
                             $newpevn->pevn['PEVN_DATE']    = $dateEnd;
-                            $newpevn->setTransferUnit($unit2);
+                            $newpevn->setTransferUnit($units[$unit2]);
                             $newpevn->save();
                             break;
                         case 'completion':

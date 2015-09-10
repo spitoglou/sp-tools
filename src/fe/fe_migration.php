@@ -4,7 +4,7 @@ require_once "src/fe/process.php";
 
 $final = true;
 $extended = false;
-$file = 'diavata';
+$file = 'test';
 
 if ($_GET['update']) {
     updatePersonExtended($file, 2);
@@ -15,7 +15,7 @@ if ($_GET['update']) {
 
     ob_start();
     foreach ($procArr as $value) {
-        processFile($file, $fakelos, $value['offset'], $value['unit1'], $value['unit2'], $value['event']);
+        processFile($file, $fakelos, $value['offset'], $value['event'], $units);
         ob_flush();
     }
     ob_end_clean();
