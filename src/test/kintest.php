@@ -11,4 +11,4 @@ sleep(2);
 d(microtime());
 Kint::trace();
 
-echo "End of kintest script!";
+echo 'End of kintest script!';

@@ -3,9 +3,9 @@
 // initialization
 $_SESSION['DefaultDateFormat'] = 'd/m/Y';
 mb_internal_encoding("UTF-8");
-require_once "vendor/autoload.php";
-require_once "vendor/custom/DateFunctions.inc";
-require_once "vendor/custom/php-console-master/src/PhpConsole/__autoload.php";
+require_once 'vendor/autoload.php';
+require_once 'vendor/custom/DateFunctions.inc';
+require_once 'vendor/custom/php-console-master/src/PhpConsole/__autoload.php';
 
 $handler = PhpConsole\Handler::getInstance();
 $handler->getConnector()->setSourcesBasePath($_SERVER['DOCUMENT_ROOT']);
@@ -40,6 +40,8 @@ spl_autoload_register(function ($class)
 //dependencies init
 $app         = new Sptools\Di();
 $app->logger = $handler;
+
+$config =[];
 
 //config
 $config['dbtype']    = 'stub';
